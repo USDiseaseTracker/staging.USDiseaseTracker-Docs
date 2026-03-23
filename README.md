@@ -34,7 +34,6 @@ Our **Key Principles** are:
 3. Data should be updated and back-populated on a regular basis, acknowledging that recent data may be incomplete as investigations proceed. Records of prior versions will be maintained.
 4. We do not suppress (except in accordance with individual jurisdiction policies, regulations, or laws) or manipulate data once received; jurisdictions should submit only data they are comfortable posting publicly.
 
-*NOTE: Data for the pilot will **not** be released publicly. Once the pilot is completed and additional states are invited to participate, the dashboard and reported data are intended to become public.*
 
 <br>
 
