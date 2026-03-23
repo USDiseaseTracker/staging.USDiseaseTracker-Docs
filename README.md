@@ -27,14 +27,6 @@ While we aim to limit changes once data standards and processes are established,
 <br>
 <br>
 
-This repository is organized as follows:
-
-- **`guides/`** - Documentation guides on data submission, technical specifications, data transfer, and data validation
-- **`examples-and-templates/`** - Submission templates, examples, and the data dictionary
-- **`data_standards_tool/`** - Interactive data standards tool
-- **`scripts/`** - Validation scripts and schema generators
-- **`docs/`** - MkDocs documentation source files (website content)
-<br>
 
 Our **Key Principles** are:
 1. Provision of data is voluntary.
