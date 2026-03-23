@@ -71,6 +71,8 @@ Our **Key Principles** are:
 
 Data are validated upon submission for completeness, format, and errors. See the [Validation Rules](guides/validation.md) for detailed validation requirements. Data can be submitted to the dashboard at any time to check the validation.
 
+To check what combinations of values are valid, check out the USDT Data Standards Tool.
+<br>
 
 
 ## Repository Structure
