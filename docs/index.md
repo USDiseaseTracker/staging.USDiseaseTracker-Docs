@@ -17,9 +17,11 @@ Welcome to the US Disease Tracker Documentation site. This repository houses the
 ## About The US Disease Tracker
 
 The goal of the US Disease Tracker is to provide consolidated epidemiologically sound data, analytics, and insights for monitoring and responding to disease threats across the United States. This project aims to produce data that are as standardized as possible, while recognizing individual variations in how and when data are collected and made available to participating health departments.
-### The USDiseaseTracker-Docs Repository
 
 ---
+
+
+### The USDiseaseTracker-Docs Repository
 
 #### ***The USDiseaseTracker-Docs Repository***
 This repository houses the data standards, templates, examples, and validation documentation for the US Disease Tracker. It provides a centralized location for standardized formats and guidelines for disease surveillance data. The goal of this repository is to establish the processes, standards, and data formats that will enable construction of a consolidated database and dashboard to track infectious diseases across the US in real-time. 
