@@ -19,6 +19,8 @@ Welcome to the US Disease Tracker Documentation site. This repository houses the
 The goal of the US Disease Tracker is to provide consolidated epidemiologically sound data, analytics, and insights for monitoring and responding to disease threats across the United States. This project aims to produce data that are as standardized as possible, while recognizing individual variations in how and when data are collected and made available to participating health departments.
 ### The USDiseaseTracker-Docs Repository
 
+---
+
 #### ***The USDiseaseTracker-Docs Repository***
 This repository houses the data standards, templates, examples, and validation documentation for the US Disease Tracker. It provides a centralized location for standardized formats and guidelines for disease surveillance data. The goal of this repository is to establish the processes, standards, and data formats that will enable construction of a consolidated database and dashboard to track infectious diseases across the US in real-time. 
 
@@ -28,6 +30,7 @@ While we aim to limit changes once data standards and processes are established,
 
 
 Our **Key Principles** are:
+
 1. Provision of data is voluntary.
 2. Only aggregate data will be collected to minimize the risk of reidentification.
 3. Data should be updated and back-populated on a regular basis, acknowledging that recent data may be incomplete as investigations proceed. Records of prior versions will be maintained.
@@ -71,8 +74,8 @@ Data are validated upon submission for completeness, format, and errors. See the
 
 To check what combinations of values are valid, check out the [USDT Data Standards Tool](https://usdiseasetracker.github.io/USDiseaseTracker-Docs/data-standards-tool/).
 
-<br>
-<br>
+
+---
 
 
 ## Repository Structure
@@ -84,6 +87,7 @@ This repository is organized as follows:
 - **`data_standards_tool/`** - Interactive data standards tool
 - **`scripts/`** - Validation scripts and schema generators
 - **`docs/`** - MkDocs documentation source files (website content)
+
 <br>
 <br>
 
