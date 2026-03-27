@@ -48,6 +48,18 @@ This example demonstrates:
 - Suppressed data handling
 
 
+### Example Juridiction Geographies File
+
+An example format for sharing sub-jurisdiction geographies, particularly for jurisdictions reporting sub-jurisdiction geographies other than county:
+
+**📄 [Jurisdiction specification example](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/ID_jurisdictions.csv)**
+
+This example demonstrates:
+
+- Proper formatting for each field
+- Combination of counties into a region geography
+
+
 ## Reference Materials
 
 
@@ -108,23 +120,6 @@ This schema includes:
 - Validation logic
 - Custom validators
 - Helper functions
-
-
-## Additional Resources
-
-
-### SharePoint Data Dictionary
-
-An enhanced version of the data dictionary with additional examples:
-
-**🔗 [Data Dictionary and Examples (SharePoint)](https://cste.sharepoint.com/:x:/g/EYIPI-VSAaJAqJlUfPpwoagBrjHTQaM862FGjLfhoPjXsA?e=OtN9Ql)**
-
-This SharePoint resource provides:
-
-- Extended examples
-- Additional use cases
-- Collaborative updates
-- Supplementary documentation
 
 
 ## How to Use These Resources
