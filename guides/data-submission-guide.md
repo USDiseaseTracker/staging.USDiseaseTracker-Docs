@@ -257,7 +257,7 @@ Data should be submitted in CSV format following the standard template structure
 **Template and Example Files:**
 
 - [Data submission template](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/disease_tracking_report_{jurisdiction}_{report_date}.csv) - Empty template with correct field structure
-- [Example data file](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/disease_tracking_report_CA-EXAMPLE_2026-02-09.csv) - Sample data demonstrating proper format
+- [Example data file](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/disease_tracking_report_CA-SIMULATED-EXAMPLE_2026-02-09.csv) - Sample data demonstrating proper format
 - [Jurisdiction specification example](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/ID_jurisdictions.csv) - Example format for sharing sub-jurisdiction geographies, particularly for jurisdictions reporting geographies other than county.
 
 **File Submission Requirements:**
@@ -271,7 +271,7 @@ Data should be submitted in CSV format following the standard template structure
 ```
 disease_tracking_report_{jurisdiction}_{report_date}.csv
 ```
-Example: `disease_tracking_report_CA-EXAMPLE_2026-02-09.csv`
+Example: `disease_tracking_report_CA-SIMULATED-EXAMPLE_2026-02-09.csv`
 
 See the [Data Transfer Guide](data-transfer-guide.md) for technical details on data submission methods and the [Data Technical Specifications](data-technical-specs.md) for complete field requirements.
 
