@@ -35,9 +35,9 @@ When using this template, rename it with your jurisdiction's two-letter abbrevia
 
 ### Example Data File
 
-A complete example showing simulated data that reflect what submitted data would look like.:
+A complete example showing simulated data that reflect what submitted data would look like:
 
-**📄 [disease_tracking_report_CA-EXAMPLE_2026-02-09.csv](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/disease_tracking_report_CA-EXAMPLE_2026-02-09.csv)**
+**📄 [disease_tracking_report_CA-SIMULATED-EXAMPLE_2026-02-09.csv](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/disease_tracking_report_CA-SIMULATED-EXAMPLE_2026-02-09.csv)**
 
 This example demonstrates:
 
