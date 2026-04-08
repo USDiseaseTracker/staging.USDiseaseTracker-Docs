@@ -1,8 +1,8 @@
-jurisdictions,lat,long,counties
-Public Health District 1,47.579,-116.095,Boundary;Bonner;Kootenai;Benewah;Shoshone
-Public Health District 2,46.055,-115.304,Latah;Clearwater;Nez Perce;Lewis;Idaho
-Public Health District 3,44.015,-116.41,Adams;Washington;Payette;Gem;Canyon;Owyhee
-Public Health District 4,44.319,-115.523,Valley;Boise;Ada;Elmore
-Public Health District 5,43.353,-114.349,Camas;Blaine;Gooding;Lincoln;Jerome;Minidoka;Twin Falls;Cassia
-Public Health District 6,43.319,-112.86,Butte;Bingham;Power;Bannock;Caribou;Oneida;Franklin;Bear Lake
-Public Health District 7,44.594,-113.654,Lemhi;Custer;Clark;Fremont;Jefferson;Madison;Teton;Bonneville
+jurisdictions,counties,diseases,lat,long
+Public Health District 1,Boundary;Bonner;Kootenai;Benewah;Shoshone,measles;meningococcus;pertussis,47.579,-116.095
+Public Health District 2,Latah;Clearwater;Nez Perce;Lewis;Idaho,measles;meningococcus;pertussis,46.055,-115.304
+Public Health District 3,Adams;Washington;Payette;Gem;Canyon;Owyhee,measles;meningococcus;pertussis,44.015,-116.41
+Public Health District 4,Valley;Boise;Ada;Elmore,measles;meningococcus;pertussis,44.319,-115.523
+Public Health District 5,Camas;Blaine;Gooding;Lincoln;Jerome;Minidoka;Twin Falls;Cassia,measles;meningococcus;pertussis,43.353,-114.349
+Public Health District 6,Butte;Bingham;Power;Bannock;Caribou;Oneida;Franklin;Bear Lake,measles;meningococcus;pertussis,43.319,-112.86
+Public Health District 7,Lemhi;Custer;Clark;Fremont;Jefferson;Madison;Teton;Bonneville,measles;meningococcus;pertussis,44.594,-113.654
