@@ -1,4 +1,4 @@
-jurisdictions,counties,diseases,lat,long
+jurisdiction,counties,diseases,lat,long
 Public Health District 1,Boundary;Bonner;Kootenai;Benewah;Shoshone,measles;meningococcus;pertussis,47.579,-116.095
 Public Health District 2,Latah;Clearwater;Nez Perce;Lewis;Idaho,measles;meningococcus;pertussis,46.055,-115.304
 Public Health District 3,Adams;Washington;Payette;Gem;Canyon;Owyhee,measles;meningococcus;pertussis,44.015,-116.41
