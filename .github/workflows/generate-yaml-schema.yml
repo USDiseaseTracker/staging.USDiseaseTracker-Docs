@@ -1,15 +1,27 @@
-name: Validate Schema Specifications
+name: Generate Schema from Pydantic Model
 
 on:
   push:
+    paths:
+      - 'examples-and-templates/data_reporting_schema.py'
+      # Exclude auto-generated files to prevent workflow loops
+      - '!examples-and-templates/data_reporting_schema.yaml'
+      - '!examples-and-templates/disease_tracking_data_dictionary.csv'
+      - '!guides/data-technical-specs.md'
     branches:
       - main
   pull_request:
+    paths:
+      - 'examples-and-templates/data_reporting_schema.py'
+      # Exclude auto-generated files to prevent workflow loops
+      - '!examples-and-templates/data_reporting_schema.yaml'
+      - '!examples-and-templates/disease_tracking_data_dictionary.csv'
+      - '!guides/data-technical-specs.md'
     branches:
       - main
 
 jobs:
-  validate-and-update:
+  generate-schema:
     runs-on: ubuntu-latest
     
     permissions:
@@ -28,19 +40,13 @@ jobs:
       
       - name: Install dependencies
         run: |
-          pip install pyyaml
+          pip install pydantic pyyaml
       
-      - name: Run validation
-        id: validate
+      - name: Generate YAML schema
         run: |
-          set +e
-          python3 scripts/validate_schema_specs.py
-          EXIT_CODE=$?
-          echo "validation_passed=$EXIT_CODE" >> $GITHUB_OUTPUT
-          exit 0
+          python3 scripts/generate_yaml_schema.py
       
-      - name: Update markdown and data dictionary if validation failed
-        if: steps.validate.outputs.validation_passed != '0'
+      - name: Update data standards tool and documentation from schema
         run: |
           python3 scripts/validate_schema_specs.py --update
       
@@ -58,8 +64,10 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add guides/data-technical-specs.md examples-and-templates/disease_tracking_data_dictionary.csv
-          git commit -m "Auto-update data-technical-specs.md and data_dictionary.csv from schema"
+          git add examples-and-templates/data_reporting_schema.yaml
+          git add examples-and-templates/disease_tracking_data_dictionary.csv
+          git add guides/data-technical-specs.md
+          git commit -m "Auto-update schema, data dictionary, and documentation from Pydantic model" -m "Updated files: $(git diff --cached --name-only | tr '\n' ' ')"
           
           # Determine the target branch
           if [ "${{ github.event_name }}" = "pull_request" ]; then
@@ -70,7 +78,7 @@ jobs:
           
           git push origin HEAD:"$BRANCH"
       
-      - name: Run validation again to ensure success
+      - name: Validate final consistency
         if: steps.check_changes.outputs.changes == 'true'
         run: |
           python3 scripts/validate_schema_specs.py

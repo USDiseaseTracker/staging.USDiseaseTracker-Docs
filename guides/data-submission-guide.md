@@ -1,13 +1,20 @@
-# Data Submission Guide
-
-| Version | Changes from previous version |   
-|---------|---------|
-|  1.0.0 (updated 2026-01-07) | - Initial version of documentation repository <br>- Fixed contradictions between files |
-
-
+---
+title: Data Submission Guide
+permalink: /docs/data-submission-guide/
 ---
 
-**Status:** Work in Progress
+# Data Submission Guide
+
+??? info "**Version 1.1.0** (updated 2026-02-09)"
+    
+    - Updated version of documentation to clarify new standards 
+    - Serogrouping for meningococcus: Report only at the state/reporting jurisdiction level as reporting at smaller geographies would likely lead to data suppression; report separately from age.
+    - Age Groups: Reported at the state/reporting jurisdiction level; Combined the <1 year age groups (currently 0-6 months and 6-12 months) for current diseases (measles, pertussis, meningococcus) into a single “<1 year” category.
+    - Removed “YTD” value as a valid option for time_unit.
+    - Removed monthly aggregations; only weekly aggregation of cases by MMWR week for all diseases.
+    - New value uses implemented: `total`, `unknown`, `unspecified` have specified meaning and uses, `NA` is only valid if `geo_name = "international resident"`.
+
+---
 
 
 This guide provides detailed specifications for health departments participating in the US Disease Tracker project to contribute reportable disease count data. To date, this project is seeking data from jurisdictions already sending case notification data through NNDSS.
@@ -20,30 +27,33 @@ This guide provides detailed specifications for health departments participating
 4. [Data Format](#data-format)
 5. [Metadata Requirements](#metadata-requirements)
 6. [Validation](#validation)
+
 <br>
 
 ## Reportable Data Specifications
 
+<br>
 
 ### Time Period
 
 **Start Date:** December 29, 2024 (start of MMWR week 1, 2025)  
 **End Date:** Through present
+
 <br>
 
 ### Time Aggregation
 
-| Disease | Weekly | Monthly |
-|---------|--------|---------|
-| Measles | ✓ | |
-| Pertussis | | ✓ |
-| Invasive Meningococcal Disease | | ✓ |
+| Disease | Weekly |
+|---------|--------|
+| Measles | ✓ |
+| Pertussis | ✓ |
+| Invasive Meningococcal Disease | ✓ |
 
 <br>
 
 ### Confirmation Status
 
-Required **case** confirmation status by disease:
+*Required **case** confirmation status by disease:*
 
 | Disease | Confirmation Status |
 |---------|---------------------|
@@ -56,81 +66,71 @@ Required **case** confirmation status by disease:
 
 ### Required Data Aggregations
 
-Each aggregation stream should provide complete data from December 29, 2024 through the present. See [Case Classification by Time](#case-classification-by-time) below for details on assignment of cases to time periods.
+Disease counts for different breakdowns are collected separately (e.g., age, sub-jurisdiction, disease subtype, etc.). We call these versions of the data the "data aggregations". Each data aggregation should provide complete data from December 29, 2024 through the present, with each having equivalent total counts over time (e.g., cumulative measles cases in the age group aggregation must equal cumulative measles cases in the sub-jurisdiction aggregation). See [Case Classification by Time](#case-classification-by-time) below for details on assignment of cases to time periods. Only the data aggregations listed below will be accepted; new aggregations will be added as needed for new demographics, diseases, conditions or outcomes, etc.
 
     Measles
     - Cases × week × sub-jurisdiction unit (county, planning area, sub-state region, etc.)
     - Cases × week × age group × jurisdiction (state, DC, NYC, or territory)
 
     Pertussis
-    - Cases × month × sub-jurisdiction unit
-    - Cases × month × age group × jurisdiction 
+    - Cases × week × sub-jurisdiction unit
+    - Cases × week × age group × jurisdiction 
 
     Invasive Meningococcal Disease
-    - Cases × month × sub-jurisdiction unit 
-    - Cases × month × age group × jurisdiction 
-    - Cases × month × serogroup × jurisdiction
+    - Cases × week × sub-jurisdiction unit 
+    - Cases × week × age group × jurisdiction 
+    - Cases × week × serogroup × jurisdiction
 
 <br>
 
 ### Reporting Frequency
 
-Data should be reported **weekly** during non-emergency periods. For each data submission, complete data for all all diseases and aggregations should be included, even if there are no updates. Because some diseases are currently reportable a the monthly time-scale, there are two options for how to update monthly reporting counts: (1) update continuously or (2) update only for complete reporting periods. In these options, for (1), each weeks additional case counts would be added to 
-but differ based on update frequency of monthly reporting. Choice of format is at the jurisdiction's discretion.
-
-
-
-
-1. **Continuously Updated Report**
-   - Includes a refresh of all historic weekly and monthly data
-   - Includes the new week's data for <u>current week and month for weekly reported diseases</u>
-   - Includes the new week's data <u> added to current month for monthly reported diseases</u>
-
-2. **Reporting Period Updated Report** - Full report once per month, with interim weekly reports
-   - Includes a refresh of all <u>prior</u> historic weekly and monthly data
-   - Includes the new week's data for <u>current week and month for weekly reported diseases</u> (must update both so totals match)
-   - <u>Does not</u> include the new week's data <u>added to current month for monthly reported diseases</u>
-   - Includes the new month's data for monthly reported diseases <u>only when month is complete</u>
+Data should be reported **weekly** during non-emergency periods. For each data submission, complete data for all diseases should be included, even if there are no updates.
 
 *Note: During large outbreaks or public health emergencies, more frequent updates may be requested to improve situational awareness.*
-<br> <br>
+
+<br>
 
 ### Case Classification by Time
 
 Cases should be classified in time according to a hierarchical date algorithm. 
 
-**Recommended:** Use the **Calculated Case Counting Date (CCCD)** ([CSTE Data Standardization Guidelines](https://cdn.ymaws.com/www.cste.org/resource/resmgr/2015weston/DSWG_BestPracticeGuidelines_.pdf)).
+!!! tip "**Recommended:** Use the **Calculated Case Counting Date (CCCD)**" 
 
-The CCCD employs a hierarchy and assigns the case to the earliest of:
-1. Symptom onset date
-2. Clinical diagnosis date
-3. Earliest specimen collection date associated with a positive lab result
-4. Earliest result date for a positive lab result
-5. Date first received by a public health agency
-6. Date entered/record initiated
+    See [CSTE Data Standardization Guidelines](https://cdn.ymaws.com/www.cste.org/resource/resmgr/2015weston/DSWG_BestPracticeGuidelines_.pdf) for details.
+
+   The CCCD employs a hierarchy and assigns the case to the earliest of:
+
+      1. Symptom onset date
+      2. Clinical diagnosis date
+      3. Earliest specimen collection date associated with a positive lab result
+      4. Earliest result date for a positive lab result
+      5. Date first received by a public health agency
+      6. Date entered/record initiated
 
 **Alternative:** If CCCD is not implemented, use a similar hierarchical algorithm or an existing case classification date such as Event Date in your system.
 
 **Required:** Provide metadata on the algorithm used by your jurisdiction.
 
-#### Time Period Assignment
+<br>
+
+### Time Period Assignment
 
 - **Weekly counts:** Classify by MMWR week (see [MMWR week table](https://ndc.services.cdc.gov/wp-content/uploads/MMWR-Weeks-Calendar_2024-2025.pdf))
-- **Monthly counts:** Use groupings of 4-5 corresponding MMWR weeks (see [MMWR week to month crosswalk](https://cste.sharepoint.com/:x:/g/EYIPI-VSAaJAqJlUfPpwoagBrjHTQaM862FGjLfhoPjXsA?rtime=8l2fm2Ig3kg&ActiveCell=MMWR%20week%20to%20month))
-  - Month start = start of first MMWR week that includes at least four days of the new calendar month
-- **Year-to-date counts:** Start of MMWR week 1 (2024-12-29) through end of last included MMWR week
+
 <br>
 
 ### Data Lags and Incompleteness
 
 - Jurisdictions should share all cases as soon as they are adjudicated as confirmed or probable, and are ready for public release
-- Data from recent weeks/months may be incomplete
+- Data from recent weeks may be incomplete
 - The project team will clearly indicate provisional data through:
   - Dashed lines on epidemic curves
   - Asterisks and notes detailing data completeness limitations
 - The project team will **not** censor data reported by jurisdictions
 - All data will be displayed as reported
 - The project team will work with jurisdictions to ensure completeness details are understood and portrayed correctly
+
 <br>
 
 
@@ -144,11 +144,12 @@ Sub-jurisdiction level reporting (below state, territory, or city level) is opti
 
 - Each jurisdiction should decide the geographic unit to use and provide a list of geographic units as metadata
 - Individual jurisdictions will work with the project team to determine geographic granularity
+
 <br>
 
 ## Data Elements
 
-For complete field definitions, data types, valid values, and detailed validation rules, see the [Data Technical Specifications](DATA-TECHNICAL-SPECS.md).
+For complete field definitions, data types, valid values, and detailed validation rules, see the [Data Technical Specifications](data-technical-specs.md).
 
 ### Summary of Required Fields
 
@@ -162,9 +163,9 @@ All data submissions must include the following types of information:
 
 ### Summary of Optional Fields
 
-- **disease_subtype:** For meningococcal serogroup reporting
+- **disease_subtype:** For meningococcal serogroup reporting.
 
-For detailed specifications of each field including exact field names, data types, and valid value sets, see the [Data Technical Specifications](DATA-TECHNICAL-SPECS.md).
+For detailed specifications of each field including exact field names, data types, and valid value sets, see the [Data Technical Specifications](data-technical-specs.md).
 <br>
 
 
@@ -174,8 +175,7 @@ Age groups are defined to be relevant to both disease epidemiology and vaccine s
 
 | Age Group | Description |
 |-----------|-------------|
-| 0-5 m | From birth up to but not including 6 months |
-| 6-11 m | From 6 months up to but not including 1 year birthday |
+| <1 y | From birth up to but not including 1 year birthday |
 | 1-4 y | From 1 year birthday up to but not including 5 year birthday |
 | 5-11 y | From 5 year birthday up to but not including 12 year birthday |
 | 12-18 y | From 12 year birthday up to but not including 19 year birthday |
@@ -188,7 +188,11 @@ Age groups are defined to be relevant to both disease epidemiology and vaccine s
 | unspecified | Aggregated counts of individuals from age groups being suppressed |
 
 
-**Important:** Age groups will only be shared and displayed at the jurisdiction level, not at sub-jurisdiction level, unless otherwise agreed to by individual jurisdictions.
+!!! info "Important"
+    
+    Age groups will only be shared and displayed at the jurisdiction level, not at sub-jurisdiction level, unless otherwise agreed to by individual jurisdictions.
+
+
 <br>
 
 ### International Residents
@@ -196,10 +200,11 @@ Age groups are defined to be relevant to both disease epidemiology and vaccine s
 International residents (residents of countries outside the US but who had a case identified in that jurisdiction) can be included in reported data but should be:
 
 - Designated as "international resident" using:
-  - `geo_name = "international resident"`
-  - `geo_unit = "NA"`
+  * `geo_name = "international resident"`
+  * `geo_unit = "NA"`
 - Excluded from jurisdiction total counts and age group stratifications
 - Excluded from displayed totals, epidemic curves, etc. for the jurisdiction
+
 <br>
 
 
@@ -214,16 +219,19 @@ Jurisdictions should work with the project team to ensure visualized data do not
 
 To ensure total counts add to 100% of cases:
 
-1. Cases that cannot be assigned to specific disaggregations should be aggregated in an "unspecified" category
-      Example 1: If county counts in a week are too low to release for particular counties but for other counties are sufficient:
-      - Aggregate all counts from counties that need to be suppressed (e.g., all counties with counts < 5 but greater than 0)
-      - Set `geo_name = "unspecified"`
-      - Ex: County A has 1 case and County B has 3 cases, and your jurisdiction has a suppression threshold of 5 for any cell. Report `geo_name = "unspecified"` with `count = 4`. Do not include a row for County A or County B for that week.
-      Example 2: If age counts in a week are too low to release for particular age groups but for other counties are sufficient:
-      - Aggregate all counts from age groups that need to be suppressed (e.g., all age groups with counts < 5 but greater than 0)
-      - Set `age_group = "unspecified"`
-2. Perform allocation of suppression rules and "unspecified" aggregation prior to data release
-3. Share all suppression rules with the project team for accurate description/footnoting
+1. All cases that cannot be assigned to specific values (i.e., counties, age groups) should be aggregated in an "unspecified" category for that variable.
+2. All other non-suppressed cases should be assigned to their appropriate values.   
+3. Allocation of suppression rules and "unspecified" aggregation must be performed prior to data transfer/submission.
+4. Suppression rules should be shared with the project team for accurate description/footnoting.
+
+!!! example "Example"
+
+    A jurisdiction with a suppression rule that requires suppression of any count <5, records 31 total cases of measles during a week. County A has 1 case, County B has 3 cases, County C and D have 12 and 15 cases, respectively. For the `county-level` aggregation of these counts, these should be reported as:
+   
+    1. Include a row for each `geo_name = "County C"` and `geo_name = "County D"` with `count = 12` and `count = 15`.
+    2. Include a row with `geo_name = "unspecified"` and a value in `count` that sums all suppressed county counts for this week. In this case `count = 4`.
+    3. **Do not** include a row for `geo_name = "County A"` or `geo_name = "County B"`. 
+
 <br>
 
 ### Measles Exception
@@ -235,6 +243,7 @@ For measles, the project team recommends **not suppressing data** as a default a
 ## Data Format
 
 ### No Zero Reporting
+
 - Report only non-zero counts (i.e., do not include rows in data where the count equals 0)
 - For example, if an age group had no reported outcome during a timeframe, no entry is required (e.g., if age group >= 65 has 0 cases of measles for that week for a state, do *not* include a row with `count = 0` for `age_group = ">=65"`)
 - If a jurisdiction had no reported counts of any disease or outcome during a timeframe, they should still submit the data, even if it has no new additional rows since the prior week's submission. This will enable us to limit missingness and uncertainty in the data.
@@ -246,10 +255,13 @@ For measles, the project team recommends **not suppressing data** as a default a
 Data should be submitted in CSV format following the standard template structure. 
 
 **Template and Example Files:**
-- [Data submission template](../examples-and-templates/disease_tracking_report_{jurisdiction}_{report_date}.csv) - Empty template with correct field structure
-- [Example data file](../examples-and-templates/disease_tracking_report_WA_2025-09-30.csv) - Sample data demonstrating proper format
+
+- [Data submission template](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/disease_tracking_report_{jurisdiction}_{report_date}.csv) - Empty template with correct field structure
+- [Example data file](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/disease_tracking_report_CA-SIMULATED-EXAMPLE_2026-02-09.csv) - Sample data demonstrating proper format
+- [Jurisdiction specification example](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/ID_jurisdictions.csv) - Example format for sharing sub-jurisdiction geographies, particularly for jurisdictions reporting geographies other than county.
 
 **File Submission Requirements:**
+
 - Submit a file with all incident disease counts since December 29, 2024
 - Each submission should include all updates to current and prior data, with new rows for new time periods
 - Files will be date-stamped by the system for version control
@@ -259,21 +271,23 @@ Data should be submitted in CSV format following the standard template structure
 ```
 disease_tracking_report_{jurisdiction}_{report_date}.csv
 ```
-Example: `disease_tracking_report_WA_2025-09-30.csv`
+Example: `disease_tracking_report_CA-SIMULATED-EXAMPLE_2026-02-09.csv`
 
-See the [Data Transfer Guide](DATA-TRANSFER-GUIDE.md) for technical details on data submission methods and the [Data Technical Specifications](DATA-TECHNICAL-SPECS.md) for complete field requirements.
+See the [Data Transfer Guide](data-transfer-guide.md) for technical details on data submission methods and the [Data Technical Specifications](data-technical-specs.md) for complete field requirements.
+
 <br>
 <br>
 
 
 ## Metadata Requirements
 
-Jurisdictions should provide accompanying metadata using the [Jurisdiction Reporting Metadata Template](../examples-and-templates/disease-tracking-metadata-{jurisdiction}.json) [*Coming Soon*]. For specifics on metadata, see [Data Technical Specifications](DATA-TECHNICAL-SPECS.md). Metadata required includes:
+Jurisdictions should provide accompanying metadata using the [Jurisdiction Reporting Metadata Template](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/disease-tracking-metadata-{jurisdiction}.yaml). For specifics on metadata, see [Data Technical Specifications](data-technical-specs.md). Metadata required includes:
 
 - Algorithm used to classify cases in time (e.g., CCCD or alternative)
 - List of substate geographic units used by jurisdiction
 - Data suppression policies and rules
 - Any jurisdiction-specific notes or caveats
+
 <br>
 <br>
 
@@ -283,17 +297,20 @@ Jurisdictions should provide accompanying metadata using the [Jurisdiction Repor
 All submitted data must meet validation requirements to ensure data quality and consistency.
 
 **What is validated:**
+
 - Field formats and data types
 - Values are within acceptable ranges and valid value sets
 - Logical consistency across fields
 - Required fields are present
 
 **Resources:**
-- [Data Technical Specifications](DATA-TECHNICAL-SPECS.md) - Complete field definitions and valid value sets
-- [Data dictionary (CSV)](../examples-and-templates/disease_tracking_data_dictionary.csv) - Reference table of all fields and valid values
-- [Validation Rules](VALIDATION.md) - Comprehensive validation requirements
+
+- [Data Technical Specifications](data-technical-specs.md) - Complete field definitions and valid value sets
+- [Data dictionary (CSV)](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/disease_tracking_data_dictionary.csv) - Reference table of all fields and valid values
+- [Validation Rules](validation.md) - Comprehensive validation requirements
   
-Values submitted must align with valid value sets. Values not in alignment may result in validation errors. The [Data Transfer Guide](DATA-TRANSFER-GUIDE.md) describes what happens when validation succeeds or fails.
+Values submitted must align with valid value sets. Values not in alignment may result in validation errors. The [Data Transfer Guide](data-transfer-guide.md) describes what happens when validation succeeds or fails.
+
 <br>
 
 ## Questions

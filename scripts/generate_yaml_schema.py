@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 """
-Generate data_reporting_schema.json from data_reporting_schema.py.
+Generate data_reporting_schema.yaml from data_reporting_schema.py.
 
 This script reads the Pydantic model definitions in data_reporting_schema.py
-and converts them to a JSON Schema format that matches the existing
-data_reporting_schema.json structure.
+and converts them to a YAML Schema format.
 """
 
-import json
 import sys
 from pathlib import Path
 from pydantic_core import PydanticUndefined
+import yaml
 
 # Add the examples-and-templates directory to the path so we can import the schema
 sys.path.insert(0, str(Path(__file__).parent.parent / 'examples-and-templates'))
@@ -18,8 +17,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent / 'examples-and-templates'))
 from data_reporting_schema import DiseaseReport
 
 
-def generate_json_schema():
-    """Generate JSON Schema from the Pydantic DiseaseReport model."""
+def generate_schema():
+    """Generate Schema from the Pydantic DiseaseReport model."""
     
     # Extract field information from the Pydantic model
     fields = DiseaseReport.model_fields
@@ -74,7 +73,7 @@ def generate_json_schema():
     # disease_subtype
     properties["disease_subtype"] = {
         "type": "string",
-        "description": "Subtype Name of the disease. This can be used to specify serogroup for meningococcus (e.g., A, B, C, W, Y). If not applicable, use 'NA'. If not known, use 'Unknown'."
+        "description": "Disease subtype (meningococcal serogroup). Use 'total' for non-subtype-stratified aggregations or diseases without subtype reporting (measles, pertussis). Use 'unknown' when subtyping was not performed. Use 'unspecified' when subtype is known but suppressed."
     }
     
     # reporting_jurisdiction
@@ -140,71 +139,76 @@ def generate_json_schema():
             {
                 "properties": {
                     "disease_name": {"const": "measles"},
-                    "time_unit": {"enum": ["week", "month"]}
+                    "time_unit": {"const": "week"}
                 }
             },
             {
                 "properties": {
                     "disease_name": {"const": "pertussis"},
-                    "time_unit": {"const": "month"}
+                    "time_unit": {"const": "week"}
                 }
             },
             {
                 "properties": {
                     "disease_name": {"const": "meningococcus"},
-                    "time_unit": {"const": "month"}
+                    "time_unit": {"const": "week"}
                 }
             }
         ]
     })
     
-    # Validation 2: time_unit = month description
-    all_of.append({
-        "if": {"properties": {"time_unit": {"const": "month"}}},
-        "then": {
-            "properties": {
-                "report_period_start": {
-                    "description": "When time_unit='month', report_period_start must follow the MMWR week crosswalk."
-                }
-            }
-        }
-    })
-    
-    # Validation 3: time_unit = week description
+    # Validation 2: time_unit = week description
     all_of.append({
         "if": {"properties": {"time_unit": {"const": "week"}}},
         "then": {
             "properties": {
                 "report_period_start": {
-                    "description": "When time_unit='week', report_period_start must be an MMWR week ending (Saturday). JSON Schema cannot natively validate weekday; must be enforced in ETL or via custom validator."
+                    "description": "When time_unit='week', report_period_start must be a Sunday (MMWR week start). JSON Schema cannot natively validate weekday; must be enforced in ETL or via custom validator."
+                },
+                "report_period_end": {
+                    "description": "When time_unit='week', report_period_end must be a Saturday (MMWR week end). JSON Schema cannot natively validate weekday; must be enforced in ETL or via custom validator."
                 }
             }
         }
     })
     
-    # Validation 4: disease_name and disease_subtype constraints
+    # Validation 3: disease_name and disease_subtype constraints
     # These values are extracted from the validate_disease_subtype validator in the Pydantic model
     all_of.append({
         "oneOf": [
             {
                 "properties": {
                     "disease_name": {"const": "meningococcus"},
-                    "disease_subtype": {"enum": ["A", "B", "C", "W", "X", "Y", "Z", "unknown", "unspecified", "NA"]}
+                    "disease_subtype": {"enum": ["A", "B", "C", "W", "X", "Y", "Z", "unknown", "unspecified", "total"]}
                 }
             },
             {
                 "properties": {
                     "disease_name": {"const": "measles"},
-                    "disease_subtype": {"enum": ["NA", "unknown"]}
+                    "disease_subtype": {"enum": ["total"]}
                 }
             },
             {
                 "properties": {
                     "disease_name": {"const": "pertussis"},
-                    "disease_subtype": {"enum": ["NA", "unknown"]}
+                    "disease_subtype": {"enum": ["total"]}
                 }
             }
         ]
+    })
+    
+    # Validation 4: state-level stratification
+    # When geo_unit='state', at least one of age_group or disease_subtype must not be 'total'
+    all_of.append({
+        "if": {"properties": {"geo_unit": {"const": "state"}}},
+        "then": {
+            "not": {
+                "allOf": [
+                    {"properties": {"age_group": {"const": "total"}}},
+                    {"properties": {"disease_subtype": {"const": "total"}}}
+                ]
+            }
+        }
     })
     
     # Get required fields from the model
@@ -231,20 +235,20 @@ def generate_json_schema():
 
 
 def main():
-    """Main function to generate and write the JSON schema."""
+    """Main function to generate and write the YAML schema."""
     # Define paths
     script_dir = Path(__file__).parent
     repo_root = script_dir.parent
-    output_path = repo_root / 'examples-and-templates' / 'data_reporting_schema.json'
+    yaml_output_path = repo_root / 'examples-and-templates' / 'data_reporting_schema.yaml'
     
     # Generate the schema
-    schema = generate_json_schema()
+    schema = generate_schema()
     
-    # Write to file with nice formatting
-    with open(output_path, 'w') as f:
-        json.dump(schema, f, indent=4)
+    # Write YAML schema
+    with open(yaml_output_path, 'w') as f:
+        yaml.dump(schema, f, default_flow_style=False, sort_keys=False, allow_unicode=True)
     
-    print(f"✓ Generated {output_path}")
+    print(f"✓ Generated {yaml_output_path}")
     print(f"  Schema contains {len(schema['items']['properties'])} properties")
     print(f"  {len(schema['items']['required'])} required fields")
     print(f"  {len(schema['items']['allOf'])} conditional validations")

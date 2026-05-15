@@ -1,13 +1,15 @@
-# Data Transfer Guide
-
-| Version | Changes from previous version |   
-|---------|---------|
-|  1.0.0 (updated 2026-01-07) | - Initial version of documentation repository |
-
-
+---
+title: Data Transfer Guide
+permalink: /docs/data-transfer-guide/
 ---
 
-**Status:** Work in Progress
+# Data Transfer Guide
+
+??? info "**Version 1.1.0** (updated 2026-02-09)"
+    
+    - No updates to data tranfer methods or requirements in this version. 
+    
+---
 
 ## Overview
 
@@ -34,24 +36,12 @@ Data should be transferred to the project database on a weekly basis unless an e
 
 ### Weekly Transfer Requirements
 
-- Submit a single file with all diseases and cases aggregated by week or month
+- Submit a single file with all diseases and cases aggregated by week
 - Use the calculated case counting date (or alternative hierarchical date)
 - Update file each week with new data and changes to previous aggregate values
 - If no updates are available, submit either:
   - A statement: "No data updates for this week"
   - The current file with no changes (to ensure data are not assumed missing)
-
-### Monthly Disease Updates
-
-For diseases reported on monthly timescales, jurisdictions can:
-- Update monthly totals each week, OR
-- Update month counts following completion of the reporting month
-
-Counts will be marked as "provisional" for a specified lag period on visualizations.
-
-### Monthly Transfer Option
-
-Individual jurisdictions may request monthly data transfer instead of weekly. This must be discussed and agreed upon with the project team. Weekly data sharing is strongly preferred.
 
 ## Transfer Methods
 
@@ -82,6 +72,8 @@ The project team is working with submitting jurisdictions to provide multiple me
 - Log entry created recording unsuccessful attempt and errors
 - Email notification sent to jurisdiction's registered email address
 
+<br>
+
 ### Option 2: Scheduled Pull by JHU (Automated)
 
 **Best for:** Jurisdictions with existing public data portals
@@ -107,10 +99,12 @@ The project team is working with submitting jurisdictions to provide multiple me
 #### Error Scenarios
 
 **Connection Failure:**
+
 - Logged to extent possible
 - Log contents emailed to monitored JHU email address
 
 **Validation Failure:**
+
 - File not stored
 - Log entry created recording unsuccessful attempt and errors
 - Email notification sent to jurisdiction's registered email address
@@ -121,6 +115,8 @@ The project team is working with submitting jurisdictions to provide multiple me
 - Some commonality possible if states use same data portal software (e.g., Socrata with published API)
 - Each script requires ongoing maintenance
 - Assumes jurisdiction has defined process and schedule for storing data in their portal
+
+<br>
 
 ### Option 3: Scheduled Push by Jurisdiction (Automated)
 
@@ -147,10 +143,12 @@ The project team is working with submitting jurisdictions to provide multiple me
 #### Error Scenarios
 
 **Connection Failure:**
+
 - Jurisdiction monitors/logs connection failures
 - Jurisdiction notifies JHU if warranted
 
 **Validation Failure:**
+
 - File not stored
 - Log entry created recording unsuccessful attempt and errors
 - Email notification sent to jurisdiction's registered email address
@@ -171,6 +169,7 @@ For the production environment, JHU intends to provide all three transfer method
 To prioritize development efforts, jurisdictions should indicate preferences for the pilot phase:
 
 **Ranking Instructions:**
+
 - Rank methods 1-3 based on your preference
 - Omit methods that are not possible for your jurisdiction
 - If only one method is possible, provide only that ranking
@@ -180,9 +179,12 @@ To prioritize development efforts, jurisdictions should indicate preferences for
 ### Data Portal Information
 
 If your jurisdiction has a data portal, please provide:
+
 - Software/platform name
 - Link to developer documentation (if available)
 - Point of contact for technical coordination
+
+<br>
 
 ## File Format Specifications
 
@@ -195,13 +197,15 @@ disease_tracking_report_{jurisdiction}_{report_date}.csv
 ```
 
 Where:
+
 - `{state}` = Two-letter state/territory code or NYC (e.g., WA, CA, NYC, PR)
 - `{report_date}` = Date of submission in YYYY-MM-DD format
 
 **Examples:**
+
 ```
-disease_tracking_report_WA_2025-09-30.csv
-disease_tracking_report_CA_2025-10-15.csv
+disease_tracking_report_CA_2026-02-09.csv
+disease_tracking_report_WA_2025-10-15.csv
 disease_tracking_report_NYC_2025-11-01.csv
 ```
 
@@ -211,15 +215,18 @@ JHU may add additional metadata to filenames for internal tracking purposes (e.g
 
 Files should not be altered after generation. JHU will not modify file contents, only may add metadata to filenames for internal tracking.
 
-For detailed field specifications, see the [Data Technical Specifications](DATA-TECHNICAL-SPECS.md).
+For detailed field specifications, see the [Data Technical Specifications](data-technical-specs.md).
 
 ### Template and Examples
 
 Use the official data submission template and examples:
-- [Empty template](../examples-and-templates/disease_tracking_report_{jurisdiction}_{report_date}.csv) - Template with correct field structure
-- [Example data file](../examples-and-templates/disease_tracking_report_WA_2025-09-30.csv) - Sample data demonstrating proper format
-- [Data dictionary (CSV)](../examples-and-templates/disease_tracking_data_dictionary.csv) - Reference table of all fields and valid values
-- [Data dictionary and additional resources (SharePoint)](https://cste.sharepoint.com/:x:/g/EYIPI-VSAaJAqJlUfPpwoagBrjHTQaM862FGjLfhoPjXsA?e=OtN9Ql) - Complete field definitions and external resources
+
+- [Empty template](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/disease_tracking_report_{jurisdiction}_{report_date}.csv) - Template with correct field structure
+- [Example data file](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/disease_tracking_report_CA-SIMULATED-EXAMPLE_2026-02-09.csv) - Sample data demonstrating proper format
+- [Jurisdiction specification example](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/ID_jurisdictions.csv) - Example format for sharing sub-jurisdiction geographies, particularly for jurisdictions reporting geographies other than county.
+- [Data dictionary (CSV)](https://github.com/USDiseaseTracker/USDiseaseTracker-Docs/blob/main/examples-and-templates/disease_tracking_data_dictionary.csv) - Reference table of all fields and valid values
+
+<br>
 
 ## Validation
 
@@ -232,7 +239,7 @@ All submitted files undergo automated validation:
 - **Value checks:** Values within acceptable ranges/enumerations
 - **Reasonableness checks:** Logical consistency (dates, counts, etc.)
 
-See the [Validation Rules](VALIDATION.md) for detailed validation requirements.
+See the [Validation Rules](validation.md) for detailed validation requirements.
 
 ### Validation Errors
 
@@ -251,6 +258,8 @@ If validation succeeds:
 3. Confirmation message provided to user
 4. Email notification sent to jurisdiction
 
+<br>
+
 ## Security and Authentication
 
 ### Authentication Requirements
@@ -268,38 +277,47 @@ All data transfer methods require secure authentication:
 - Access limited to authorized project team members
 - Audit logs maintained for all data access
 
+<br>
+
 ## Troubleshooting
 
 ### Common Issues
 
 **File Upload Fails:**
+
 - Check file format (must be CSV)
 - Verify file follows template structure
 - Check for special characters or encoding issues
 - Ensure file size is within limits
 
 **Validation Errors:**
+
 - Review error message for specific issues
 - Check field values against valid value sets
 - Verify date formats (YYYY-MM-DD)
 - Ensure required fields are populated
 
 **Authentication Issues:**
+
 - Verify username and password
 - Check 2FA device/app is working
 - Contact JHU support for account issues
 
 **Automated Transfer Failures:**
+
 - Verify network connectivity
 - Check credentials/API keys are valid
 - Review firewall/security settings
 - Contact JHU technical support
+
+<br>
 
 ## Support
 
 ### Technical Support
 
 For technical issues with data transfer:
+
 - Email: [to be provided]
 - Phone: [to be provided]
 - Support hours: [to be provided]
@@ -307,8 +325,11 @@ For technical issues with data transfer:
 ### Escalation
 
 For urgent issues or escalation:
+
 - Contact your jurisdiction's project liaison
 - Liaison will coordinate with JHU project team
+
+<br>
 
 ## Version Control
 
@@ -322,12 +343,15 @@ For urgent issues or escalation:
 ### Metadata Tracking
 
 For each submission, the system records:
+
 - Submission date/time
 - Submitting jurisdiction
 - Submitting user
 - File name
 - Validation status
 - Any errors or warnings
+
+<br>
 
 ## Future Enhancements
 
@@ -338,6 +362,7 @@ Post-pilot enhancements may include:
 - Real-time data quality dashboards for submitters
 - Automated data quality reports
 - API access for jurisdictions to retrieve their own data
+
 
 ## Questions
 
