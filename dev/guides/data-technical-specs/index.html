@@ -1,0 +1,1867 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data standards, templates, examples, and validation documentation for the US Disease Tracker project">
+      
+      
+        <meta name="author" content="US Disease Tracker Team">
+      
+      
+        <link rel="canonical" href="https://usdiseasetracker.github.io/USDiseaseTracker-Docs/dev/guides/data-technical-specs/">
+      
+      
+        <link rel="prev" href="../data-submission-guide/">
+      
+      
+        <link rel="next" href="../data-transfer-guide/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Data Technical Specifications - US Disease Tracker Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-technical-specifications" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="US Disease Tracker Documentation" class="md-header__button md-logo" aria-label="US Disease Tracker Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            US Disease Tracker Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Technical Specifications
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/USDiseaseTracker/USDiseaseTracker-Docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    USDiseaseTracker/USDiseaseTracker-Docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../data-submission-guide/" class="md-tabs__link">
+          
+  
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../data-standards-tool/" class="md-tabs__link">
+          
+  
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../examples-and-templates/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Examples & Templates
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../CONTRIBUTING/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="US Disease Tracker Documentation" class="md-nav__button md-logo" aria-label="US Disease Tracker Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    US Disease Tracker Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/USDiseaseTracker/USDiseaseTracker-Docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    USDiseaseTracker/USDiseaseTracker-Docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-submission-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Submission Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Technical Specifications
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Technical Specifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#field-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-zero-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Zero Reporting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fields-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fields Specifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fields Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reporting-period-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporting Period Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disease-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disease Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geographic-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geographic Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Count Field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demographic-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Demographic Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disease-specific-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disease-Specific Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version History
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-transfer-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Transfer Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pilot-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pilot Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-standards-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Standards Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples-and-templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples & Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#field-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-zero-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Zero Reporting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fields-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fields Specifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fields Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reporting-period-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporting Period Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disease-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disease Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geographic-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geographic Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Count Field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demographic-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Demographic Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disease-specific-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disease-Specific Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version History
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="data-technical-specifications">Data Technical Specifications<a class="headerlink" href="#data-technical-specifications" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Changes from previous version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1.0 (updated 2026-01-07)</td>
+<td>- Initial version of documentation repository <br>- Fixed contradictions between files</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>This document provides the complete technical specifications for disease tracking data submissions to the US Disease Tracker system. These specifications define the required and optional fields, data types, valid values, and formatting requirements for submitting aggregate disease case count data.</p>
+<p><strong>Important:</strong> This is for aggregate data only. No line-level (individual case) data should be submitted.</p>
+<p><strong>Note:</strong> For high-level submission guidance including what data to submit, when to submit it, and case classification rules, see the <a href="../data-submission-guide/">Data Submission Guide</a>.
+<br></p>
+<h3 id="contents">Contents<a class="headerlink" href="#contents" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#data-structure">Data Structure</a> - Field summary and data organization requirements</li>
+<li><a href="#field-specifications">Field Specifications</a> - Detailed specifications for all required and optional fields</li>
+<li><a href="#validation">Validation</a> - Data validation requirements</li>
+<li><a href="#example-data">Example Data</a> - Sample files and templates</li>
+<li><a href="#metadata-requirements">Metadata Requirements</a> - Required accompanying metadata</li>
+<li><a href="#version-history">Version History</a> - Document version tracking</li>
+<li><a href="#references">References</a> - Related documentation and resources
+<br>
+<br></li>
+</ul>
+<h2 id="data-structure">Data Structure<a class="headerlink" href="#data-structure" title="Permanent link">&para;</a></h2>
+<p>Data should be submitted in CSV format with one row per unique combination of:
+- Time period (week)
+- Geographic unit
+- Disease
+- Age group (when applicable)
+- Disease subtype (when applicable)
+- Outcome (currently only cases)
+<br></p>
+<h3 id="field-summary">Field Summary<a class="headerlink" href="#field-summary" title="Permanent link">&para;</a></h3>
+<p>The following table provides a comprehensive overview of all data fields required for submission:</p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Valid Values</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>time_unit</td>
+<td>String</td>
+<td>Time aggregation unit</td>
+<td><code>week</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>report_period_start</td>
+<td>Date</td>
+<td>Start date of reporting period (MMWR week aligned)</td>
+<td>ISO 8601 format (YYYY-MM-DD)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>report_period_end</td>
+<td>Date</td>
+<td>End date of reporting period (MMWR week aligned)</td>
+<td>ISO 8601 format (YYYY-MM-DD)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>date_type</td>
+<td>String</td>
+<td>Method used to assign cases to reporting periods</td>
+<td><code>cccd</code>, <code>jurisdiction date hierarchy</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>disease_name</td>
+<td>String</td>
+<td>Name of disease being reported</td>
+<td><code>measles</code>, <code>pertussis</code>, <code>meningococcus</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>outcome</td>
+<td>String</td>
+<td>Type of outcome being reported</td>
+<td><code>cases</code>, <code>hospitalizations</code>, <code>deaths</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>confirmation_status</td>
+<td>String</td>
+<td>Case confirmation level</td>
+<td><code>confirmed</code>, <code>confirmed and probable</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>reporting_jurisdiction</td>
+<td>String</td>
+<td>Jurisdiction submitting the data</td>
+<td>Two-letter state/territory code or <code>NYC</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>State/territory containing the geographic unit</td>
+<td>Two-letter state/territory code</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>geo_unit</td>
+<td>String</td>
+<td>Type of geographic unit</td>
+<td><code>county</code>, <code>state</code>, <code>region</code>, <code>planning area</code>, <code>hsa</code>, <code>NA</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>geo_name</td>
+<td>String</td>
+<td>Name of the geographic unit</td>
+<td>Name string or <code>international resident</code>, <code>unknown</code>, <code>unspecified</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>count</td>
+<td>Integer</td>
+<td>Number of cases for this combination</td>
+<td>Positive integers</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>age_group</td>
+<td>String</td>
+<td>Age group of cases</td>
+<td><code>&lt;1 y</code>, <code>1-4 y</code>, <code>5-11 y</code>, <code>12-18 y</code>, <code>19-22 y</code>, <code>23-44 y</code>, <code>45-64 y</code>, <code>&gt;=65 y</code>, <code>total</code>, <code>unknown</code>, <code>unspecified</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>disease_subtype</td>
+<td>String</td>
+<td>Disease subtype (meningococcal serogroup)</td>
+<td><code>A</code>, <code>B</code>, <code>C</code>, <code>W</code>, <code>X</code>, <code>Y</code>, <code>Z</code>, <code>total</code>, <code>unknown</code>, <code>unspecified</code></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Notes:</strong>
+- <strong>Report Period:</strong> Use MMWR week boundaries for weekly reporting
+- <strong>Disease-Specific Rules:</strong> Measles uses <code>confirmed</code> only; Pertussis and Meningococcus use <code>confirmed and probable</code>
+- <strong>Geographic Units:</strong> Use standard two-letter abbreviations (AL, AK, ..., WY, DC, PR, etc.); for international residents use <code>geo_name = "international resident"</code> and <code>geo_unit = "NA"</code>; for suppressed small counts use <code>geo_name = "unspecified"</code>
+- <strong>Age Groups:</strong> Age groups displayed at jurisdiction level only (not sub-jurisdiction); use <code>total</code> for non-age-stratified aggregations
+- <strong>Disease Subtype:</strong> Use <code>total</code> for non-subtype-stratified aggregations or diseases without subtype reporting (measles, pertussis); use <code>unknown</code> when subtyping was not performed; use <code>unspecified</code> when subtype is known but suppressed
+- <strong>Counts:</strong> Only include non-zero counts; apply jurisdiction data suppression policies before submission
+<br></p>
+<h3 id="no-zero-reporting">No Zero Reporting<a class="headerlink" href="#no-zero-reporting" title="Permanent link">&para;</a></h3>
+<p>Only include rows with non-zero counts. The system will automatically infer zeros for missing combinations at higher aggregation levels.
+<br>
+<br></p>
+<h2 id="fields-specifications">Fields Specifications<a class="headerlink" href="#fields-specifications" title="Permanent link">&para;</a></h2>
+<h3 id="reporting-period-fields">Reporting Period Fields<a class="headerlink" href="#reporting-period-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Valid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>time_unit</td>
+<td>String</td>
+<td>Time aggregation unit</td>
+<td><code>week</code></td>
+</tr>
+<tr>
+<td>report_period_start</td>
+<td>Date</td>
+<td>Start date of reporting period (MMWR-aligned)</td>
+<td>ISO 8601 format (YYYY-MM-DD)</td>
+</tr>
+<tr>
+<td>report_period_end</td>
+<td>Date</td>
+<td>End date of reporting period (MMWR-aligned)</td>
+<td>ISO 8601 format (YYYY-MM-DD)</td>
+</tr>
+<tr>
+<td>date_type</td>
+<td>String</td>
+<td>Method used to assign cases to reporting time periods</td>
+<td><code>cccd</code>, <code>jurisdiction date hierarchy</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:</strong>
+- Use MMWR week boundaries for weekly reporting
+- Provide metadata describing custom date hierarchies if not using CCCD
+<br></p>
+<h3 id="disease-fields">Disease Fields<a class="headerlink" href="#disease-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Valid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>disease_name</td>
+<td>String</td>
+<td>Name of disease being reported</td>
+<td><code>measles</code>, <code>pertussis</code>, <code>meningococcus</code></td>
+</tr>
+<tr>
+<td>outcome</td>
+<td>String</td>
+<td>Type of outcome being reported</td>
+<td><code>cases</code>, <code>hospitalizations</code>, <code>deaths</code></td>
+</tr>
+<tr>
+<td>confirmation_status</td>
+<td>String</td>
+<td>Case confirmation level</td>
+<td><code>confirmed</code>, <code>confirmed and probable</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:</strong>
+- Measles: Use <code>confirmed</code> only
+- Pertussis and Meningococcus: Use <code>confirmed and probable</code>
+- Additional outcomes (hospitalizations, deaths) planned for future
+<br></p>
+<h3 id="geographic-fields">Geographic Fields<a class="headerlink" href="#geographic-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Valid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reporting_jurisdiction</td>
+<td>String</td>
+<td>Jurisdiction submitting the data</td>
+<td>Two-letter state/territory code or <code>NYC</code></td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>State/territory containing the geographic unit</td>
+<td>Two-letter state/territory code</td>
+</tr>
+<tr>
+<td>geo_unit</td>
+<td>String</td>
+<td>Type of geographic unit</td>
+<td><code>county</code>, <code>state</code>, <code>region</code>, <code>planning area</code>, <code>hsa</code>, <code>NA</code></td>
+</tr>
+<tr>
+<td>geo_name</td>
+<td>String</td>
+<td>Name of the geographic unit</td>
+<td>Name string or <code>unspecified</code>, <code>unknown</code>, <code>international resident</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:</strong>
+- Use standard two-letter abbreviations (AL, AK, ..., WY, DC, PR, etc.)
+- For international residents: use <code>geo_name = "international resident"</code> and <code>geo_unit = "NA"</code>
+- Metadata should include all geographic unit names used</p>
+<ul>
+<li>Disease subtype is currently collected at jurisdiction level only (not sub-jurisdiction)</li>
+<li>Currently only use for meningococcal disease serogroup reporting</li>
+<li>Use <code>total</code> for non-subtype-stratified aggregations</li>
+<li>Use <code>total</code> diseases without subtype reporting (measles, pertussis)</li>
+<li>Use <code>unknown</code> when subtyping was not performed or is otherwise not known (only for disease_subtype aggregations)</li>
+<li>Use <code>unspecified</code> when geo_name is known but suppressed in subjurisdiction aggregations
+<br></li>
+</ul>
+<h3 id="count-field">Count Field<a class="headerlink" href="#count-field" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Valid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Integer</td>
+<td>Number of cases for this combination</td>
+<td>Positive integers</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:</strong>
+- Only include non-zero counts
+- Apply jurisdiction data suppression policies before submission
+- Use <code>geo_name = "unspecified"</code> for suppressed counts to maintain totals
+<br></p>
+<h3 id="demographic-fields">Demographic Fields<a class="headerlink" href="#demographic-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Valid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>age_group</td>
+<td>String</td>
+<td>Age group of cases</td>
+<td>See age group table below</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Valid Age Groups:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;1 y</code></td>
+<td>From birth up to but not including 1 year birthday</td>
+</tr>
+<tr>
+<td><code>1-4 y</code></td>
+<td>From 1 year birthday up to but not including 5 year birthday</td>
+</tr>
+<tr>
+<td><code>5-11 y</code></td>
+<td>From 5 year birthday up to but not including 12 year birthday</td>
+</tr>
+<tr>
+<td><code>12-18 y</code></td>
+<td>From 12 year birthday up to but not including 19 year birthday</td>
+</tr>
+<tr>
+<td><code>19-22 y</code></td>
+<td>From 19 year birthday up to but not including 23 year birthday</td>
+</tr>
+<tr>
+<td><code>23-44 y</code></td>
+<td>From 23 year birthday up to but not including 45 year birthday</td>
+</tr>
+<tr>
+<td><code>45-64 y</code></td>
+<td>From 45 year birthday up to but not including 65 year birthday</td>
+</tr>
+<tr>
+<td><code>&gt;=65 y</code></td>
+<td>From 65 year birthday and older</td>
+</tr>
+<tr>
+<td><code>total</code></td>
+<td>All ages combined</td>
+</tr>
+<tr>
+<td><code>unknown</code></td>
+<td>Age unknown</td>
+</tr>
+<tr>
+<td><code>unspecified</code></td>
+<td>Age known but suppressed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:</strong>
+- Age group is currently accepted at jurisdiction level only (not sub-jurisdiction)
+- Same age groupings used for all diseases
+- Use <code>total</code> for non-age-stratified aggregations
+- Use <code>unknown</code> when age information is truely unknown (only for age_group aggregations)
+- Use <code>unspecified</code> when age group is known but suppressed
+<br></p>
+<h3 id="disease-specific-fields">Disease-Specific Fields<a class="headerlink" href="#disease-specific-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Valid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>disease_subtype</td>
+<td>String</td>
+<td>Disease subtype (meningococcal serogroup)</td>
+<td><code>A</code>, <code>B</code>, <code>C</code>, <code>W</code>, <code>X</code>, <code>Y</code>, <code>Z</code>, <code>unknown</code>, <code>unspecified</code>,<code>total</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:</strong>
+- Disease subtype is currently accepted at jurisdiction level only (not sub-jurisdiction)
+- Currently only use for meningococcal disease serogroup reporting
+- Use <code>total</code> for non-subtype-stratified aggregations
+- Use <code>total</code> diseases without subtype reporting (measles, pertussis)
+- Use <code>unknown</code> when subtyping was not performed or is otherwise not known (only for disease_subtype aggregations)
+- Use <code>unspecified</code> when subtype is known but suppressed
+<br>
+<br></p>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>See <a href="../validation/">Validation</a> for details on file and data validation.
+<br>
+<br></p>
+<h2 id="example-data">Example Data<a class="headerlink" href="#example-data" title="Permanent link">&para;</a></h2>
+<p>Example data files are available to help understand the required format:</p>
+<p><strong>In this repository:</strong>
+- <a href="../examples-and-templates/disease_tracking_report_WA_2025-09-30.csv">Complete example</a> - Sample data file with measles and pertussis data
+- <a href="../examples-and-templates/disease_tracking_report_{jurisdiction}_{report_date}.csv">Empty template</a> - Template file with correct structure
+- <a href="../examples-and-templates/disease_tracking_data_dictionary.csv">Data dictionary (CSV)</a> - Reference table of all fields and valid values</p>
+<p><strong>File naming convention:</strong>
+Files should be named following the pattern:
+<div class="highlight"><pre><span></span><code>disease_tracking_report_{jurisdiction}_{report_date}.csv
+</code></pre></div></p>
+<p>Examples:
+- <code>disease_tracking_report_WA_2025-09-30.csv</code> (Washington state, submitted September 30, 2025)
+<br>
+<br></p>
+<h2 id="metadata-requirements">Metadata Requirements<a class="headerlink" href="#metadata-requirements" title="Permanent link">&para;</a></h2>
+<p>Jurisdictions should provide accompanying metadata using the <a href="../examples-and-templates/disease-tracking-metadata-{jurisdiction}.json">Jurisdiction Reporting Metadata Template</a> [<em>Coming Soon</em>]. Metadata required includes:</p>
+<ol>
+<li><strong>Date Classification Method</strong></li>
+<li>If using CCCD, indicate "cccd"</li>
+<li>
+<p>If using custom hierarchy, provide detailed description</p>
+</li>
+<li>
+<p><strong>Geographic Units</strong></p>
+</li>
+<li>List of all geographic unit names used</li>
+<li>
+<p>Mapping of units to parent jurisdictions (if applicable)</p>
+</li>
+<li>
+<p><strong>Data Suppression Policies</strong></p>
+</li>
+<li>Rules for small count suppression</li>
+<li>
+<p>How suppressed counts are aggregated</p>
+</li>
+<li>
+<p><strong>Contact Information</strong></p>
+</li>
+<li>Technical point of contact</li>
+<li>Data quality contact
+<br>
+<br></li>
+</ol>
+<h2 id="version-history">Version History<a class="headerlink" href="#version-history" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1.0</td>
+<td>2026-01-06</td>
+<td>Initial draft for pilot phase</td>
+</tr>
+<tr>
+<td><br></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><br></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../data-submission-guide/">Data Submission Guide</a> - High-level guidance on what and when to submit</li>
+<li><a href="../data-transfer-guide/">Data Transfer Guide</a> - Technical details on how to transfer data</li>
+<li><a href="../examples-and-templates/disease_tracking_data_dictionary.csv">Data dictionary (CSV)</a> - Reference table of all fields and valid values</li>
+<li><a href="../validation/">Validation Rules</a> - Complete validation requirements</li>
+<li><a href="https://cdn.ymaws.com/www.cste.org/resource/resmgr/2015weston/DSWG_BestPracticeGuidelines_.pdf">CSTE CCCD Guidelines</a></li>
+<li><a href="https://learn.cste.org/images/dH42Qhmof6nEbdvwIIL6F4zvNjU1NzA0MjAxMTUy/Course_Content/Case_based_Surveillance_for_Syphilis/CSTE_Revised_Guidelines_for_Determining_Residency_for_Disease_Reporting_Purposes.pdf">CSTE Residency Guidelines</a></li>
+<li><a href="https://health.maryland.gov/phpa/OIDEOR/CIDSOR/NEDSS/MMWR_Calendar.pdf">MMWR Week Calendar</a>
+<br>
+<br></li>
+</ul>
+<h2 id="questions">Questions<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
+<p>For questions about these technical specifications, see the <a href="../data-submission-guide/">Data Submission Guide</a> or contact the project team.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/USDiseaseTracker/USDiseaseTracker-Docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
