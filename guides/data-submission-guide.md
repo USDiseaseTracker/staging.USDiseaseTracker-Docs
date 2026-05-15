@@ -48,6 +48,13 @@ This guide provides detailed specifications for health departments participating
 | Measles | ✓ |
 | Pertussis | ✓ |
 | Invasive Meningococcal Disease | ✓ |
+| Hepatitis A | ✓ |
+| Acute Hepatitis B | ✓ |
+| Perinatal Hepatitis B | ✓ |
+| Mumps | ✓ |
+| Mpox | ✓ |
+| Varicella | ✓ |
+| Influenza-Associated Pediatric Mortality | ✓ |
 
 <br>
 
@@ -60,6 +67,13 @@ This guide provides detailed specifications for health departments participating
 | Measles | Confirmed only |
 | Pertussis | Confirmed and probable combined |
 | Invasive Meningococcal Disease | Confirmed and probable combined |
+| Hepatitis A | Confirmed only |
+| Acute Hepatitis B | Confirmed and probable combined |
+| Perinatal Hepatitis B | Confirmed only |
+| Mumps | Confirmed and probable combined |
+| Mpox | Confirmed and probable combined |
+| Varicella | Confirmed and probable combined |
+| Influenza-Associated Pediatric Mortality | Confirmed only |
 
 <br>
 
@@ -80,6 +94,33 @@ Disease counts for different breakdowns are collected separately (e.g., age, sub
     - Cases × week × sub-jurisdiction unit 
     - Cases × week × age group × jurisdiction 
     - Cases × week × serogroup × jurisdiction
+
+    Hepatitis A
+    - Cases × week × sub-jurisdiction unit
+    - Cases × week × age group × jurisdiction
+
+    Acute Hepatitis B
+    - Cases × week × sub-jurisdiction unit
+    - Cases × week × age group × jurisdiction
+
+    Perinatal Hepatitis B
+    - Cases × week × sub-jurisdiction unit
+
+    Mumps
+    - Cases × week × sub-jurisdiction unit
+    - Cases × week × age group × jurisdiction
+
+    Mpox
+    - Cases × week × sub-jurisdiction unit
+    - Cases × week × age group × jurisdiction
+
+    Varicella
+    - Cases × week × sub-jurisdiction unit
+    - Cases × week × age group × jurisdiction
+
+    Influenza-Associated Pediatric Mortality
+    - Cases × week × sub-jurisdiction unit
+    - Cases × week × age group × jurisdiction
 
 <br>
 

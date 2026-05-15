@@ -55,7 +55,14 @@ Our **Key Principles** are:
 |---------|------------------|---------------------|----------|------------|------------------|
 | Measles | Weekly | Confirmed only | Cases | *multiple* | *not collected* |
 | Pertussis | Weekly | Confirmed and probable (combined) | Cases | *multiple* | *not collected* |
-| Invasive Meningococcal Disease | Weekly | Confirmed and probable (combined) | Cases | *multiple* | *collected* 
+| Invasive Meningococcal Disease | Weekly | Confirmed and probable (combined) | Cases | *multiple* | *collected* |
+| Hepatitis A | Weekly | Confirmed only | Cases | *multiple* | *not collected* |
+| Acute Hepatitis B | Weekly | Confirmed and probable (combined) | Cases | *multiple* | *not collected* |
+| Perinatal Hepatitis B | Weekly | Confirmed only | Cases | *not collected* | *not collected* |
+| Mumps | Weekly | Confirmed and probable (combined) | Cases | *multiple* | *not collected* |
+| Mpox | Weekly | Confirmed and probable (combined) | Cases | *multiple* | *not collected* |
+| Varicella | Weekly | Confirmed and probable (combined) | Cases | *multiple* | *not collected* |
+| Influenza-Associated Pediatric Mortality | Weekly | Confirmed only | Cases | *multiple* | *not collected* |
 
 ### 📚 Guides and Specifications
 

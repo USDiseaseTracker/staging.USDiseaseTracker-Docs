@@ -54,6 +54,6 @@ Validation errors will be reported back to submitters with specific error descri
 
 ### Cross-Field Validation
 
-- Measles confirmation_status must be `confirmed`
-- Pertussis and meningococcus confirmation_status must be `confirmed and probable`
+- Measles, Hepatitis A, Perinatal Hepatitis B, and Influenza-Associated Pediatric Mortality confirmation_status must be `confirmed`
+- Pertussis, Meningococcus, Acute Hepatitis B, Mumps, Mpox, and Varicella confirmation_status must be `confirmed and probable`
 - All diseases require weekly time_unit submissions
