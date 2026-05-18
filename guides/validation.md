@@ -5,14 +5,11 @@ permalink: /docs/validation/
 
 # Validation
 
-??? info "**Version 1.1.0** (updated 2026-02-09)"
+??? info "**Version 2.0.0** (updated 2026-05-18)"
     
-    - Updated version of documentation to clarify new standards 
-    - Serogrouping for meningococcus: Report only at the state/reporting jurisdiction level as reporting at smaller geographies would likely lead to data suppression; report separately from age.
-    - Age Groups: Reported at the state/reporting jurisdiction level; Combined the <1 year age groups (currently 0-6 months and 6-12 months) for current diseases (measles, pertussis, meningococcus) into a single “<1 year” category.
-    - Removed “YTD” value as a valid option for time_unit.
-    - Removed monthly aggregations; only weekly aggregation of cases by MMWR week for all diseases.
-    - New value uses implemented: `total`, `unknown`, `unspecified` have specified meaning and uses, `NA` is only valid if `geo_name = "international resident"`.
+    - Updated validation references to reflect the current supported disease set.
+    - Clarified disease-specific cross-field expectations for `confirmation_status` and `disease_subtype`.
+    - Aligned validation guidance language with current standards and templates.
 
 
 ---
