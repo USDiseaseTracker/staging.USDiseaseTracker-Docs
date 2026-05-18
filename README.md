@@ -56,7 +56,7 @@ Our **Key Principles** are:
 | Mumps | Weekly | Confirmed and probable (combined) | Cases | *multiple* | *not collected* |
 | Mpox | Weekly | Confirmed and probable (combined) | Cases | *multiple* | *not collected* |
 | Varicella | Weekly | Confirmed and probable (combined) | Cases | *multiple* | *not collected* |
-| Influenza-Associated Pediatric Mortality | Weekly | Confirmed only | Cases | *multiple* | *not collected* |
+| Influenza-Associated Pediatric Mortality | Weekly | Confirmed only | Deaths | *multiple* | *not collected* |
 
 **Guides and Specifications**
 1. **[Data Submission Guide](guides/data-submission-guide.md)** - High-level overview of what and when to submit
