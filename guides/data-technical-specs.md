@@ -112,7 +112,7 @@ Only include rows with non-zero counts. The system will automatically infer zero
 
 | Field Name | Data Type | Description | Valid Values |
 |------------|-----------|-------------|--------------|
-| disease_name | String | Name of disease being reported | `measles`, `pertussis`, `meningococcus`, `hep a`, `acute hepatitis B`, `perinatal hepatitis B`, `mumps`, `mpox`, `varicella`, `influenza-associated pediatric mortality` |
+| disease_name | String | Name of disease being reported | `measles`, `pertussis`, `meningococcus`, `hepatitis a`, `acute hepatitis b`, `perinatal hepatitis b`, `mumps`, `mpox`, `varicella`, `pediatric flu mortality` |
 | outcome | String | Type of outcome being reported | `cases`, `hospitalizations`, `deaths` |
 | confirmation_status | String | Case confirmation level | `confirmed`, `confirmed and probable` |
 
@@ -192,6 +192,21 @@ Only include rows with non-zero counts. The system will automatically infer zero
 - Use `unknown` when age information is truely unknown (only for age_group aggregations)
 - Use `unspecified` when age group is known but suppressed
 
+**Valid Age Groups by Condition:**
+
+| Disease | Valid Age Groups | Notes |
+|---------|-----------------|-------|
+| measles | `<1 y`, `1-4 y`, `5-11 y`, `12-18 y`, `19-22 y`, `23-44 y`, `45-64 y`, `>=65 y`, `total`, `unknown`, `unspecified` | |
+| pertussis | `<1 y`, `1-4 y`, `5-11 y`, `12-18 y`, `19-22 y`, `23-44 y`, `45-64 y`, `>=65 y`, `total`, `unknown`, `unspecified` | |
+| meningococcus | `<1 y`, `1-4 y`, `5-11 y`, `12-18 y`, `19-22 y`, `23-44 y`, `45-64 y`, `>=65 y`, `total`, `unknown`, `unspecified` | |
+| hepatitis a | `<1 y`, `1-4 y`, `5-11 y`, `12-18 y`, `19-22 y`, `23-44 y`, `45-64 y`, `>=65 y`, `total`, `unknown`, `unspecified` | |
+| acute hepatitis b | `<1 y`, `1-4 y`, `5-11 y`, `12-18 y`, `19-22 y`, `23-44 y`, `45-64 y`, `>=65 y`, `total`, `unknown`, `unspecified` | |
+| perinatal hepatitis b | `total` | only &lt;2yrs |
+| mumps | `<1 y`, `1-4 y`, `5-11 y`, `12-18 y`, `19-22 y`, `23-44 y`, `45-64 y`, `>=65 y`, `total`, `unknown`, `unspecified` | |
+| mpox | `<1 y`, `1-4 y`, `5-11 y`, `12-18 y`, `19-22 y`, `23-44 y`, `45-64 y`, `>=65 y`, `total`, `unknown`, `unspecified` | |
+| varicella | `<1 y`, `1-4 y`, `5-11 y`, `12-18 y`, `19-22 y`, `23-44 y`, `45-64 y`, `>=65 y`, `total`, `unknown`, `unspecified` | |
+| pediatric flu mortality | `<1 y`, `1-4 y`, `5-11 y`, `12-18 y`, `total`, `unknown`, `unspecified` | |
+
 <br>
 
 ### Disease-Specific Fields
@@ -208,6 +223,21 @@ Only include rows with non-zero counts. The system will automatically infer zero
 - Use `total` for diseases without subtype reporting (measles, pertussis, hep a, acute hepatitis B, perinatal hepatitis B, mumps, mpox, varicella, influenza-associated pediatric mortality)
 - Use `unknown` when subtyping was not performed or is otherwise not known (only for disease_subtype aggregations)
 - Use `unspecified` when subtype is known but suppressed
+
+**Valid Subtypes by Condition:**
+
+| Disease | Valid Subtypes |
+|---------|---------------|
+| measles | `total` |
+| pertussis | `total` |
+| meningococcus | `A`, `B`, `C`, `W`, `X`, `Y`, `Z`, `total`, `unknown`, `unspecified` |
+| hepatitis a | `total` |
+| acute hepatitis b | `total` |
+| perinatal hepatitis b | `total` |
+| mumps | `total` |
+| mpox | `total` |
+| varicella | `total` |
+| pediatric flu mortality | `total` |
 
 <br>
 <br>
