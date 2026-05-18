@@ -32,6 +32,10 @@ def read_disease_metadata(csv_path: Path) -> list[dict]:
         'disease_long',
         'time_unit',
         'confirmation_status',
+        'disease_subtype',
+        'age_group',
+        'aggregation_agegroups',
+        'aggregations_diseasesubtype',
     }
 
     def _clean_required(row: dict, column: str, row_number: int) -> str:
@@ -66,12 +70,22 @@ def read_disease_metadata(csv_path: Path) -> list[dict]:
                 else 'total'
             )
             subtypes = [s.strip() for s in subtypes_raw.split(',') if s.strip()]
+            age_groups_value = row.get('age_group')
+            age_groups_raw = (
+                age_groups_value.strip()
+                if isinstance(age_groups_value, str) and age_groups_value.strip()
+                else 'total'
+            )
+            age_groups = [a.strip() for a in age_groups_raw.split(',') if a.strip()]
             diseases.append({
                 'disease': _clean_required(row, 'disease', row_number),
                 'disease_long': _clean_required(row, 'disease_long', row_number),
                 'time_unit': _clean_required(row, 'time_unit', row_number),
                 'confirmation_status': _clean_required(row, 'confirmation_status', row_number),
                 'disease_subtype': subtypes,
+                'age_group': age_groups,
+                'aggregation_agegroups': row.get('aggregation_agegroups', 'Yes').strip(),
+                'aggregations_diseasesubtype': row.get('aggregations_diseasesubtype', 'N/A').strip(),
             })
     return diseases
 
@@ -251,19 +265,95 @@ def generate_schema():
         ]
     })
 
-    # Validation 4: state-level stratification
-    # When geo_unit='state', at least one of age_group or disease_subtype must not be 'total'
+    # Validation 4: each disease_name must pair with its allowed age_group values
+    # Generated from disease_metadata.csv
     all_of.append({
-        "if": {"properties": {"geo_unit": {"const": "state"}}},
-        "then": {
-            "not": {
-                "allOf": [
-                    {"properties": {"age_group": {"const": "total"}}},
-                    {"properties": {"disease_subtype": {"const": "total"}}}
+        "oneOf": [
+            {
+                "properties": {
+                    "disease_name": {"const": d['disease']},
+                    "age_group": {"enum": d['age_group']}
+                }
+            }
+            for d in diseases
+        ]
+    })
+
+    # Validation 5: state-level stratification rules, per disease category
+    # (replaces the former blanket rule that incorrectly excluded no-age-breakdown diseases)
+    #
+    # 5a. Diseases with age breakdown only (no subtype breakdown):
+    #     when geo_unit='state', age_group must not be 'total'.
+    age_only_diseases = [
+        d['disease'] for d in diseases
+        if d['aggregation_agegroups'] == 'Yes' and d['aggregations_diseasesubtype'] != 'Yes'
+    ]
+    if age_only_diseases:
+        all_of.append({
+            "if": {
+                "properties": {
+                    "disease_name": {"enum": age_only_diseases},
+                    "geo_unit": {"const": "state"},
+                }
+            },
+            "then": {
+                "properties": {
+                    "age_group": {"not": {"const": "total"}}
+                }
+            }
+        })
+
+    # 5b. Diseases with subtype breakdown (e.g. meningococcus):
+    #     when geo_unit='state', exactly one of age_group or disease_subtype must be 'total'.
+    subtype_diseases = [
+        d['disease'] for d in diseases
+        if d['aggregations_diseasesubtype'] == 'Yes'
+    ]
+    if subtype_diseases:
+        all_of.append({
+            "if": {
+                "properties": {
+                    "disease_name": {"enum": subtype_diseases},
+                    "geo_unit": {"const": "state"},
+                }
+            },
+            "then": {
+                "oneOf": [
+                    {
+                        "properties": {
+                            "age_group": {"not": {"const": "total"}},
+                            "disease_subtype": {"const": "total"}
+                        }
+                    },
+                    {
+                        "properties": {
+                            "age_group": {"const": "total"},
+                            "disease_subtype": {"not": {"const": "total"}}
+                        }
+                    }
                 ]
             }
-        }
-    })
+        })
+
+    # 5c. Diseases with no age breakdown (e.g. perinatal hepatitis b):
+    #     age_group must always be 'total' at all geo levels.
+    no_age_diseases = [
+        d['disease'] for d in diseases
+        if d['aggregation_agegroups'] != 'Yes'
+    ]
+    if no_age_diseases:
+        all_of.append({
+            "if": {
+                "properties": {
+                    "disease_name": {"enum": no_age_diseases},
+                }
+            },
+            "then": {
+                "properties": {
+                    "age_group": {"const": "total"}
+                }
+            }
+        })
 
     # Get required fields from the model
     required_fields = [
