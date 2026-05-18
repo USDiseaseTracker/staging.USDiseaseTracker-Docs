@@ -141,7 +141,7 @@ Only include rows with non-zero counts. The system will automatically infer zero
 - Disease subtype is currently collected at jurisdiction level only (not sub-jurisdiction)
 - Currently only use for meningococcal disease serogroup reporting
 - Use `total` for non-subtype-stratified aggregations
-- Use `total` for diseases without subtype reporting (measles, pertussis, hep a, acute hepatitis B, perinatal hepatitis B, mumps, mpox, varicella, influenza-associated pediatric mortality)
+- Use `total` for diseases without subtype reporting (measles, pertussis, hepatitis a, acute hepatitis b, perinatal hepatitis b, mumps, mpox, varicella, pediatric flu mortality)
 - Use `unknown` when subtyping was not performed or is otherwise not known (only for disease_subtype aggregations)
 - Use `unspecified` when geo_name is known but suppressed in subjurisdiction aggregations
 
@@ -220,7 +220,7 @@ Only include rows with non-zero counts. The system will automatically infer zero
 - Disease subtype is currently accepted at jurisdiction level only (not sub-jurisdiction)
 - Currently only use for meningococcal disease serogroup reporting
 - Use `total` for non-subtype-stratified aggregations
-- Use `total` for diseases without subtype reporting (measles, pertussis, hep a, acute hepatitis B, perinatal hepatitis B, mumps, mpox, varicella, influenza-associated pediatric mortality)
+- Use `total` for diseases without subtype reporting (measles, pertussis, hepatitis a, acute hepatitis b, perinatal hepatitis b, mumps, mpox, varicella, pediatric flu mortality)
 - Use `unknown` when subtyping was not performed or is otherwise not known (only for disease_subtype aggregations)
 - Use `unspecified` when subtype is known but suppressed
 
