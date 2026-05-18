@@ -44,7 +44,7 @@ Data should be submitted in CSV format with one row per unique combination of:
 - Disease
 - Age group (when applicable)
 - Disease subtype (when applicable)
-- Outcome (currently only cases)
+- Outcome (`cases` or `deaths`)
 
 <br>
 
@@ -120,7 +120,7 @@ Only include rows with non-zero counts. The system will automatically infer zero
 
 - Measles, Hepatitis A, Perinatal Hepatitis B, and Influenza-Associated Pediatric Mortality: Use `confirmed` only
 - Pertussis, Meningococcus, Acute Hepatitis B, Mumps, Mpox, and Varicella: Use `confirmed and probable`
-- Additional outcomes (hospitalizations, deaths) planned for future
+- Additional outcomes (hospitalizations) planned for future
 
 <br>
 
