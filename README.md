@@ -40,7 +40,7 @@ Our **Key Principles** are:
 ## Quick Reference
 
 **🛠️ Interactive Tool:**
-- ***NEW!!!*** **[USDT Data Standards Tool](https://usdiseasetracker.github.io/USDiseaseTracker-Docs/data-standards-tool/)** - Interactive tool to explore valid data field options and generate example data
+- **[USDT Data Standards Tool](https://usdiseasetracker.github.io/USDiseaseTracker-Docs/data-standards-tool/)** - Interactive tool to explore valid data field options and generate example data
 
 **Key Dates:**
 - **Data Start:** December 29, 2024 (MMWR week 1, 2025)
