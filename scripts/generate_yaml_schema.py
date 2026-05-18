@@ -77,6 +77,17 @@ def read_disease_metadata(csv_path: Path) -> list[dict]:
                 else 'total'
             )
             age_groups = [a.strip() for a in age_groups_raw.split(',') if a.strip()]
+            def _parse_bool_flag(column: str, default: str) -> str:
+                raw = row.get(column, default)
+                normalized = raw.strip().upper() if isinstance(raw, str) else default
+                if normalized not in ('TRUE', 'FALSE'):
+                    disease_id = row.get('disease', f'row {row_number}')
+                    raise ValueError(
+                        f"Invalid value {raw!r} for column '{column}' in {csv_path} "
+                        f"(disease={disease_id!r}). Expected 'TRUE' or 'FALSE'."
+                    )
+                return normalized
+
             diseases.append({
                 'disease': _clean_required(row, 'disease', row_number),
                 'disease_long': _clean_required(row, 'disease_long', row_number),
@@ -84,8 +95,8 @@ def read_disease_metadata(csv_path: Path) -> list[dict]:
                 'confirmation_status': _clean_required(row, 'confirmation_status', row_number),
                 'disease_subtype': subtypes,
                 'age_group': age_groups,
-                'aggregation_agegroups': row.get('aggregation_agegroups', 'TRUE').strip(),
-                'aggregations_diseasesubtype': row.get('aggregations_diseasesubtype', 'FALSE').strip(),
+                'aggregation_agegroups': _parse_bool_flag('aggregation_agegroups', 'TRUE'),
+                'aggregations_diseasesubtype': _parse_bool_flag('aggregations_diseasesubtype', 'FALSE'),
             })
     return diseases
 
