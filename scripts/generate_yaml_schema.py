@@ -27,17 +27,50 @@ def read_disease_metadata(csv_path: Path) -> list[dict]:
     Returns a list of dicts with keys:
         disease, disease_long, time_unit, confirmation_status, disease_subtype (list)
     """
+    required_columns = {
+        'disease',
+        'disease_long',
+        'time_unit',
+        'confirmation_status',
+    }
+
+    def _clean_required(row: dict, column: str, row_number: int) -> str:
+        value = row.get(column)
+        cleaned = value.strip() if isinstance(value, str) else ''
+        if not cleaned:
+            raise ValueError(
+                f"Malformed row {row_number} in {csv_path}: required column '{column}' is blank"
+            )
+        return cleaned
+
     diseases = []
     with open(csv_path, newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
-        for row in reader:
-            subtypes_raw = row.get('disease_subtype', 'total').strip()
+        fieldnames = reader.fieldnames or []
+        missing_columns = sorted(required_columns - set(fieldnames))
+        if missing_columns:
+            raise ValueError(
+                f"Missing required columns in {csv_path}: {', '.join(missing_columns)}"
+            )
+
+        for row_number, row in enumerate(reader, start=2):
+            if not row or not any(
+                value.strip() for value in row.values() if isinstance(value, str)
+            ):
+                continue
+
+            subtypes_value = row.get('disease_subtype')
+            subtypes_raw = (
+                subtypes_value.strip()
+                if isinstance(subtypes_value, str) and subtypes_value.strip()
+                else 'total'
+            )
             subtypes = [s.strip() for s in subtypes_raw.split(',') if s.strip()]
             diseases.append({
-                'disease': row['disease'].strip(),
-                'disease_long': row['disease_long'].strip(),
-                'time_unit': row['time_unit'].strip(),
-                'confirmation_status': row['confirmation_status'].strip(),
+                'disease': _clean_required(row, 'disease', row_number),
+                'disease_long': _clean_required(row, 'disease_long', row_number),
+                'time_unit': _clean_required(row, 'time_unit', row_number),
+                'confirmation_status': _clean_required(row, 'confirmation_status', row_number),
                 'disease_subtype': subtypes,
             })
     return diseases
