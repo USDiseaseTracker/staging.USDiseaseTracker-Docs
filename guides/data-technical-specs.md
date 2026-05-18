@@ -57,20 +57,20 @@ The following table provides a comprehensive overview of all data fields require
 
 | Field Name | Data Type | Description | Valid Values | Required |
 |------------|-----------|-------------|--------------|----------|
-| time_unit | String | Time aggregation unit | `week` | Yes|
-| report_period_start | Date | Start date of reporting period (MMWR week aligned) | ISO 8601 format (YYYY-MM-DD) | Yes|
-| report_period_end | Date | End date of reporting period (MMWR week aligned) | ISO 8601 format (YYYY-MM-DD) | Yes|
-| date_type | String | Method used to assign cases to reporting periods | `cccd`, `jurisdiction date hierarchy` | Yes|
-| disease_name | String | Name of disease being reported | `measles`, `pertussis`, `meningococcus`, `hep a`, `acute hepatitis B`, `perinatal hepatitis B`, `mumps`, `mpox`, `varicella`, `influenza-associated pediatric mortality` | Yes|
-| outcome | String | Type of outcome being reported | `cases`, `hospitalizations`, `deaths` | Yes|
-| confirmation_status | String | Case confirmation level | `confirmed`, `confirmed and probable` | Yes|
-| reporting_jurisdiction | String | Jurisdiction submitting the data | Two-letter state/territory code or `NYC` | Yes|
-| state | String | State/territory containing the geographic unit | Two-letter state/territory code | Yes|
-| geo_unit | String | Type of geographic unit | `county`, `state`, `region`, `planning area`, `hsa`, `NA` | Yes|
-| geo_name | String | Name of the geographic unit | Name string or `international resident`, `unknown`, `unspecified` | Yes|
-| count | Integer | Number of cases for this combination | Positive integers | Yes|
-| age_group | String | Age group of cases | `<1 y`, `1-4 y`, `5-11 y`, `12-18 y`, `19-22 y`, `23-44 y`, `45-64 y`, `>=65 y`, `total`, `unknown`, `unspecified` | Yes|
-| disease_subtype | String | Disease subtype (meningococcal serogroup) | `A`, `B`, `C`, `W`, `X`, `Y`, `Z`, `total`, `unknown`, `unspecified` | Yes|
+| time_unit | String | Time aggregation unit | `week` | Yes |
+| report_period_start | Date | Start date of reporting period (MMWR week aligned) | ISO 8601 format (YYYY-MM-DD) | Yes |
+| report_period_end | Date | End date of reporting period (MMWR week aligned) | ISO 8601 format (YYYY-MM-DD) | Yes |
+| date_type | String | Method used to assign cases to reporting periods | `cccd`, `jurisdiction date hierarchy` | Yes |
+| disease_name | String | Name of disease being reported | `measles`, `pertussis`, `meningococcus`, `hep a`, `acute hepatitis B`, `perinatal hepatitis B`, `mumps`, `mpox`, `varicella`, `influenza-associated pediatric mortality` | Yes |
+| outcome | String | Type of outcome being reported | `cases`, `hospitalizations`, `deaths` | Yes |
+| confirmation_status | String | Case confirmation level | `confirmed`, `confirmed and probable` | Yes |
+| reporting_jurisdiction | String | Jurisdiction submitting the data | Two-letter state/territory code or `NYC` | Yes |
+| state | String | State/territory containing the geographic unit | Two-letter state/territory code | Yes |
+| geo_unit | String | Type of geographic unit | `county`, `state`, `region`, `planning area`, `hsa`, `NA` | Yes |
+| geo_name | String | Name of the geographic unit | Name string or `international resident`, `unknown`, `unspecified` | Yes |
+| count | Integer | Number of cases for this combination | Positive integers | Yes |
+| age_group | String | Age group of cases | `<1 y`, `1-4 y`, `5-11 y`, `12-18 y`, `19-22 y`, `23-44 y`, `45-64 y`, `>=65 y`, `total`, `unknown`, `unspecified` | Yes |
+| disease_subtype | String | Disease subtype (meningococcal serogroup) | `A`, `B`, `C`, `W`, `X`, `Y`, `Z`, `total`, `unknown`, `unspecified` | Yes |
 <br>
 
 **Key Notes:**

@@ -92,7 +92,7 @@ def main() -> None:
     # Step 4: Validate final consistency
     _run(
         [sys.executable, str(script_dir / 'validate_schema_specs.py')],
-        'Step 3: Validate consistency across all derived files',
+        'Step 4: Validate consistency across all derived files',
     )
 
     print('\n' + '='*60)

@@ -445,8 +445,9 @@ def update_markdown_from_schema(schema: Dict, markdown: str, schema_path: Path) 
                 "Update 'replace_field_required' to handle the new layout."
             )
         # Perform the substitution on the Required column, ensuring it succeeds.
+        # [^|]+ greedily consumes any trailing space, so we re-add it before \2.
         pattern = r'(\|\s*' + re.escape(field_name) + r'\s*\| [^|]+ \| [^|]+ \| [^|]+ \| )[^|]+(\s*\|)'
-        updated_new, count = re.subn(pattern, r'\1' + required_val + r'\2', updated)
+        updated_new, count = re.subn(pattern, r'\1' + required_val + r' \2', updated)
         if count == 0:
             raise ValueError(
                 f"Failed to update 'Required' column for field '{field_name}'. "
