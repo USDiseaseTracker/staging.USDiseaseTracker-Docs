@@ -30,6 +30,13 @@ items:
       - measles
       - pertussis
       - meningococcus
+      - hep a
+      - acute hepatitis B
+      - perinatal hepatitis B
+      - mumps
+      - mpox
+      - varicella
+      - influenza-associated pediatric mortality
       description: Name of the disease
     disease_subtype:
       type: string
@@ -180,6 +187,41 @@ items:
           const: meningococcus
         time_unit:
           const: week
+    - properties:
+        disease_name:
+          const: hep a
+        time_unit:
+          const: week
+    - properties:
+        disease_name:
+          const: acute hepatitis B
+        time_unit:
+          const: week
+    - properties:
+        disease_name:
+          const: perinatal hepatitis B
+        time_unit:
+          const: week
+    - properties:
+        disease_name:
+          const: mumps
+        time_unit:
+          const: week
+    - properties:
+        disease_name:
+          const: mpox
+        time_unit:
+          const: week
+    - properties:
+        disease_name:
+          const: varicella
+        time_unit:
+          const: week
+    - properties:
+        disease_name:
+          const: influenza-associated pediatric mortality
+        time_unit:
+          const: week
   - if:
       properties:
         time_unit:
@@ -197,6 +239,18 @@ items:
   - oneOf:
     - properties:
         disease_name:
+          const: measles
+        disease_subtype:
+          enum:
+          - total
+    - properties:
+        disease_name:
+          const: pertussis
+        disease_subtype:
+          enum:
+          - total
+    - properties:
+        disease_name:
           const: meningococcus
         disease_subtype:
           enum:
@@ -207,18 +261,48 @@ items:
           - X
           - Y
           - Z
+          - total
           - unknown
           - unspecified
-          - total
     - properties:
         disease_name:
-          const: measles
+          const: hep a
         disease_subtype:
           enum:
           - total
     - properties:
         disease_name:
-          const: pertussis
+          const: acute hepatitis B
+        disease_subtype:
+          enum:
+          - total
+    - properties:
+        disease_name:
+          const: perinatal hepatitis B
+        disease_subtype:
+          enum:
+          - total
+    - properties:
+        disease_name:
+          const: mumps
+        disease_subtype:
+          enum:
+          - total
+    - properties:
+        disease_name:
+          const: mpox
+        disease_subtype:
+          enum:
+          - total
+    - properties:
+        disease_name:
+          const: varicella
+        disease_subtype:
+          enum:
+          - total
+    - properties:
+        disease_name:
+          const: influenza-associated pediatric mortality
         disease_subtype:
           enum:
           - total
