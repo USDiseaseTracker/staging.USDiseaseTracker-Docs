@@ -49,7 +49,7 @@ Validation errors will be reported back to submitters with specific error descri
 - `time_unit` must be `week`
 - `date_type` must be `cccd` or `jurisdiction date hierarchy`
 - `geo_unit` must be one of: `county`, `state`, `region`, `planning area`, `hsa`, `NA`
-- `outcome` must be one of: `cases`, `hospitalizations`, `deaths`
+- `outcome` must be one of: `cases`, `deaths`
 - `confirmation_status` must be `confirmed` or `confirmed and probable`
 - `age_group` must be one of the recognized age group values (see [Valid Age Groups by Condition](data-technical-specs.md#demographic-fields))
 - `disease_subtype` must be a valid value for the submitted `disease_name` (see [Valid Subtypes by Condition](data-technical-specs.md#disease-specific-fields))
