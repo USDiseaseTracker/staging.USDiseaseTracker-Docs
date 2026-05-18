@@ -58,7 +58,7 @@ The following table provides a comprehensive overview of all data fields require
 | report_period_start | Date | Start date of reporting period (MMWR week aligned) | ISO 8601 format (YYYY-MM-DD) | Yes |
 | report_period_end | Date | End date of reporting period (MMWR week aligned) | ISO 8601 format (YYYY-MM-DD) | Yes |
 | date_type | String | Method used to assign cases to reporting periods | `cccd`, `jurisdiction date hierarchy` | Yes |
-| disease_name | String | Name of disease being reported | `measles`, `pertussis`, `meningococcus`, `hepatitis a`, `acute hepatitis B`, `perinatal hepatitis B`, `mumps`, `mpox`, `varicella`, `pediatric flu mortality` | Yes |
+| disease_name | String | Name of disease being reported | `measles`, `pertussis`, `meningococcus`, `hepatitis a`, `acute hepatitis n`, `perinatal hepatitis b`, `mumps`, `mpox`, `varicella`, `pediatric flu mortality` | Yes |
 | outcome | String | Type of outcome being reported | `cases`, `hospitalizations`, `deaths` | Yes |
 | confirmation_status | String | Case confirmation level | `confirmed`, `confirmed and probable` | Yes |
 | reporting_jurisdiction | String | Jurisdiction submitting the data | Two-letter state/territory code or `NYC` | Yes |
