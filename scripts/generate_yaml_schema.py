@@ -84,8 +84,8 @@ def read_disease_metadata(csv_path: Path) -> list[dict]:
                 'confirmation_status': _clean_required(row, 'confirmation_status', row_number),
                 'disease_subtype': subtypes,
                 'age_group': age_groups,
-                'aggregation_agegroups': row.get('aggregation_agegroups', 'Yes').strip(),
-                'aggregations_diseasesubtype': row.get('aggregations_diseasesubtype', 'N/A').strip(),
+                'aggregation_agegroups': row.get('aggregation_agegroups', 'TRUE').strip(),
+                'aggregations_diseasesubtype': row.get('aggregations_diseasesubtype', 'FALSE').strip(),
             })
     return diseases
 
@@ -286,7 +286,7 @@ def generate_schema():
     #     when geo_unit='state', age_group must not be 'total'.
     age_only_diseases = [
         d['disease'] for d in diseases
-        if d['aggregation_agegroups'] == 'Yes' and d['aggregations_diseasesubtype'] != 'Yes'
+        if d['aggregation_agegroups'] == 'TRUE' and d['aggregations_diseasesubtype'] != 'TRUE'
     ]
     if age_only_diseases:
         all_of.append({
@@ -308,7 +308,7 @@ def generate_schema():
     #     (the other must not be 'total').
     subtype_diseases = [
         d['disease'] for d in diseases
-        if d['aggregations_diseasesubtype'] == 'Yes'
+        if d['aggregations_diseasesubtype'] == 'TRUE'
     ]
     if subtype_diseases:
         all_of.append({
@@ -340,7 +340,7 @@ def generate_schema():
     #     age_group must always be 'total' at all geo levels.
     no_age_diseases = [
         d['disease'] for d in diseases
-        if d['aggregation_agegroups'] != 'Yes'
+        if d['aggregation_agegroups'] != 'TRUE'
     ]
     if no_age_diseases:
         all_of.append({

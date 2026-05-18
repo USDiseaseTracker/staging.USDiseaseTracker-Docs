@@ -28,8 +28,8 @@ def _load_disease_metadata() -> list[dict]:
                 'confirmation_status': row.get('confirmation_status', '').strip(),
                 'disease_subtype': subtypes,
                 'age_group': age_groups,
-                'aggregation_agegroups': row.get('aggregation_agegroups', 'Yes').strip(),
-                'aggregations_diseasesubtype': row.get('aggregations_diseasesubtype', 'N/A').strip(),
+                'aggregation_agegroups': row.get('aggregation_agegroups', 'TRUE').strip(),
+                'aggregations_diseasesubtype': row.get('aggregations_diseasesubtype', 'FALSE').strip(),
             })
     return diseases
 
@@ -41,13 +41,13 @@ DISEASE_NAMES: list[str] = [d['disease'] for d in _DISEASE_METADATA]
 DISEASE_SUBTYPES: dict[str, list[str]] = {d['disease']: d['disease_subtype'] for d in _DISEASE_METADATA}
 DISEASE_CONFIRMATION: dict[str, str] = {d['disease']: d['confirmation_status'] for d in _DISEASE_METADATA}
 DISEASE_AGE_GROUPS: dict[str, list[str]] = {d['disease']: d['age_group'] for d in _DISEASE_METADATA}
-# diseases where aggregation_agegroups = 'Yes' (state-level age breakdown is reported)
+# diseases where aggregation_agegroups = 'TRUE' (state-level age breakdown is reported)
 DISEASES_WITH_AGE_BREAKDOWN: set[str] = {
-    d['disease'] for d in _DISEASE_METADATA if d['aggregation_agegroups'] == 'Yes'
+    d['disease'] for d in _DISEASE_METADATA if d['aggregation_agegroups'] == 'TRUE'
 }
-# diseases where aggregations_diseasesubtype = 'Yes' (state-level subtype breakdown is reported)
+# diseases where aggregations_diseasesubtype = 'TRUE' (state-level subtype breakdown is reported)
 DISEASES_WITH_SUBTYPE_BREAKDOWN: set[str] = {
-    d['disease'] for d in _DISEASE_METADATA if d['aggregations_diseasesubtype'] == 'Yes'
+    d['disease'] for d in _DISEASE_METADATA if d['aggregations_diseasesubtype'] == 'TRUE'
 }
 
 
