@@ -4,9 +4,12 @@
 
 **Version 2.0.0 (updated 2026-05-18)**
     
-    - Expanded supported diseases across documentation, templates, and the data standards tool.
-    - Updated disease-specific validation guidance for `confirmation_status` and `disease_subtype`.
-    - Harmonized metadata and dictionary values for the newly supported diseases.
+    - Added 7 new diseases: 
+        - New conditions: hepatitis A, acute hepatitis B, perinatal hepatitis B, mumps, mpox, varicella, influenza-associated pediatric mortality 
+        - Original conditions: measles, pertussis, invasive meningoccoccal disease
+    - Added `disease_metadata.csv` file in `examples-and-templates` that details the specifics of each condition
+
+    
 
 
 ---
