@@ -30,13 +30,13 @@ items:
       - measles
       - pertussis
       - meningococcus
-      - hep a
+      - hepatitis a
       - acute hepatitis B
       - perinatal hepatitis B
       - mumps
       - mpox
       - varicella
-      - influenza-associated pediatric mortality
+      - pediatric flu mortality
       description: Name of the disease
     disease_subtype:
       type: string
@@ -189,7 +189,7 @@ items:
           const: week
     - properties:
         disease_name:
-          const: hep a
+          const: hepatitis a
         time_unit:
           const: week
     - properties:
@@ -219,7 +219,7 @@ items:
           const: week
     - properties:
         disease_name:
-          const: influenza-associated pediatric mortality
+          const: pediatric flu mortality
         time_unit:
           const: week
   - if:
@@ -266,7 +266,7 @@ items:
           - unspecified
     - properties:
         disease_name:
-          const: hep a
+          const: hepatitis a
         disease_subtype:
           enum:
           - total
@@ -302,7 +302,7 @@ items:
           - total
     - properties:
         disease_name:
-          const: influenza-associated pediatric mortality
+          const: pediatric flu mortality
         disease_subtype:
           enum:
           - total
