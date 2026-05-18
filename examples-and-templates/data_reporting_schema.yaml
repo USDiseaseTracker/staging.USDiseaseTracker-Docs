@@ -146,7 +146,6 @@ items:
       type: string
       enum:
       - cases
-      - hospitalizations
       - deaths
       description: Reported outcome type
     count:
