@@ -304,7 +304,8 @@ def generate_schema():
         })
 
     # 5b. Diseases with subtype breakdown (e.g. meningococcus):
-    #     when geo_unit='state', exactly one of age_group or disease_subtype must be 'total'.
+    #     when geo_unit='state', exactly one of age_group or disease_subtype must be 'total'
+    #     (the other must not be 'total').
     subtype_diseases = [
         d['disease'] for d in diseases
         if d['aggregations_diseasesubtype'] == 'Yes'

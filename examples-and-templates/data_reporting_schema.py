@@ -202,8 +202,10 @@ class DiseaseReport(BaseModel):
 
         state level (geo_unit == 'state') — diseases with subtype breakdown
         (aggregations_diseasesubtype=Yes, e.g. meningococcus):
-            - age breakdown rows:    disease_subtype == 'total', age_group != 'total'
+            - age breakdown rows:     disease_subtype == 'total', age_group != 'total'
             - subtype breakdown rows: age_group == 'total', disease_subtype != 'total'
+            i.e. exactly one of age_group or disease_subtype must be 'total'
+            (the other must not be 'total')
 
         diseases with no age breakdown (aggregation_agegroups=No, e.g. perinatal hepatitis b):
             - age_group must always be 'total' at all geo levels
