@@ -31,8 +31,8 @@ items:
       - pertussis
       - meningococcus
       - hepatitis a
-      - acute hepatitis B
-      - perinatal hepatitis B
+      - acute hepatitis b
+      - perinatal hepatitis b
       - mumps
       - mpox
       - varicella
@@ -194,12 +194,12 @@ items:
           const: week
     - properties:
         disease_name:
-          const: acute hepatitis B
+          const: acute hepatitis b
         time_unit:
           const: week
     - properties:
         disease_name:
-          const: perinatal hepatitis B
+          const: perinatal hepatitis b
         time_unit:
           const: week
     - properties:
@@ -272,13 +272,13 @@ items:
           - total
     - properties:
         disease_name:
-          const: acute hepatitis B
+          const: acute hepatitis b
         disease_subtype:
           enum:
           - total
     - properties:
         disease_name:
-          const: perinatal hepatitis B
+          const: perinatal hepatitis b
         disease_subtype:
           enum:
           - total
