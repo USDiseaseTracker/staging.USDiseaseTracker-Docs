@@ -5,14 +5,11 @@ permalink: /docs/data-technical-specs/
 
 # Data Technical Specifications
 
-??? info "**Version 1.1.0** (updated 2026-02-09)"
+??? info "**Version 2.0.0** (updated 2026-05-18)"
     
-    - Updated version of documentation to clarify new standards 
-    - Serogrouping for meningococcus: Report only at the state/reporting jurisdiction level as reporting at smaller geographies would likely lead to data suppression; report separately from age.
-    - Age Groups: Reported at the state/reporting jurisdiction level; Combined the <1 year age groups (currently 0-6 months and 6-12 months) for current diseases (measles, pertussis, meningococcus) into a single “<1 year” category.
-    - Removed “YTD” value as a valid option for time_unit.
-    - Removed monthly aggregations; only weekly aggregation of cases by MMWR week for all diseases.
-    - New value uses implemented: `total`, `unknown`, `unspecified` have specified meaning and uses, `NA` is only valid if `geo_name = "international resident"`.
+    - Updated field-level specifications to cover the expanded supported disease set.
+    - Clarified disease-specific valid values for `confirmation_status` and `disease_subtype`.
+    - Synchronized technical specs with current templates and data standards tooling behavior.
 
 ---
 
@@ -61,7 +58,7 @@ The following table provides a comprehensive overview of all data fields require
 | report_period_start | Date | Start date of reporting period (MMWR week aligned) | ISO 8601 format (YYYY-MM-DD) | Yes |
 | report_period_end | Date | End date of reporting period (MMWR week aligned) | ISO 8601 format (YYYY-MM-DD) | Yes |
 | date_type | String | Method used to assign cases to reporting periods | `cccd`, `jurisdiction date hierarchy` | Yes |
-| disease_name | String | Name of disease being reported | `measles`, `pertussis`, `meningococcus` | Yes |
+| disease_name | String | Name of disease being reported | `measles`, `pertussis`, `meningococcus`, `hep a`, `acute hepatitis B`, `perinatal hepatitis B`, `mumps`, `mpox`, `varicella`, `influenza-associated pediatric mortality` | Yes |
 | outcome | String | Type of outcome being reported | `cases`, `hospitalizations`, `deaths` | Yes |
 | confirmation_status | String | Case confirmation level | `confirmed`, `confirmed and probable` | Yes |
 | reporting_jurisdiction | String | Jurisdiction submitting the data | Two-letter state/territory code or `NYC` | Yes |
@@ -76,10 +73,11 @@ The following table provides a comprehensive overview of all data fields require
 **Key Notes:**
 
 - **Report Period:** Use MMWR week boundaries for weekly reporting
-- **Disease-Specific Rules:** Measles uses `confirmed` only; Pertussis and Meningococcus use `confirmed and probable`
+- **Disease-Specific Rules:** Measles, Hepatitis A, Perinatal Hepatitis B, and Influenza-Associated Pediatric Mortality use `confirmed` only; Pertussis, Meningococcus, Acute Hepatitis B, Mumps, Mpox, and Varicella use `confirmed and probable`
 - **Geographic Units:** Use standard two-letter abbreviations (AL, AK, ..., WY, DC, PR, etc.); for international residents use `geo_name = "international resident"` and `geo_unit = "NA"`; for suppressed small counts use `geo_name = "unspecified"`
 - **Age Groups:** Age groups displayed at jurisdiction level only (not sub-jurisdiction); use `total` for non-age-stratified aggregations
-- **Disease Subtype:** Use `total` for non-subtype-stratified aggregations or diseases without subtype reporting (measles, pertussis); use `unknown` when subtyping was not performed; use `unspecified` when subtype is known but suppressed
+- **Perinatal Hepatitis B exception:** Age group stratifications are not collected for Perinatal Hepatitis B; report only `total`
+- **Disease Subtype:** Use `total` for non-subtype-stratified aggregations or diseases without subtype reporting; use `unknown` when subtyping was not performed; use `unspecified` when subtype is known but suppressed
 - **Counts:** Only include non-zero counts; apply jurisdiction data suppression policies before submission
 
 <br>
@@ -114,14 +112,14 @@ Only include rows with non-zero counts. The system will automatically infer zero
 
 | Field Name | Data Type | Description | Valid Values |
 |------------|-----------|-------------|--------------|
-| disease_name | String | Name of disease being reported | `measles`, `pertussis`, `meningococcus` |
+| disease_name | String | Name of disease being reported | `measles`, `pertussis`, `meningococcus`, `hep a`, `acute hepatitis B`, `perinatal hepatitis B`, `mumps`, `mpox`, `varicella`, `influenza-associated pediatric mortality` |
 | outcome | String | Type of outcome being reported | `cases`, `hospitalizations`, `deaths` |
 | confirmation_status | String | Case confirmation level | `confirmed`, `confirmed and probable` |
 
 **Notes:**
 
-- Measles: Use `confirmed` only
-- Pertussis and Meningococcus: Use `confirmed and probable`
+- Measles, Hepatitis A, Perinatal Hepatitis B, and Influenza-Associated Pediatric Mortality: Use `confirmed` only
+- Pertussis, Meningococcus, Acute Hepatitis B, Mumps, Mpox, and Varicella: Use `confirmed and probable`
 - Additional outcomes (hospitalizations, deaths) planned for future
 
 <br>
@@ -143,7 +141,7 @@ Only include rows with non-zero counts. The system will automatically infer zero
 - Disease subtype is currently collected at jurisdiction level only (not sub-jurisdiction)
 - Currently only use for meningococcal disease serogroup reporting
 - Use `total` for non-subtype-stratified aggregations
-- Use `total` diseases without subtype reporting (measles, pertussis)
+- Use `total` for diseases without subtype reporting (measles, pertussis, hep a, acute hepatitis B, perinatal hepatitis B, mumps, mpox, varicella, influenza-associated pediatric mortality)
 - Use `unknown` when subtyping was not performed or is otherwise not known (only for disease_subtype aggregations)
 - Use `unspecified` when geo_name is known but suppressed in subjurisdiction aggregations
 
@@ -207,7 +205,7 @@ Only include rows with non-zero counts. The system will automatically infer zero
 - Disease subtype is currently accepted at jurisdiction level only (not sub-jurisdiction)
 - Currently only use for meningococcal disease serogroup reporting
 - Use `total` for non-subtype-stratified aggregations
-- Use `total` diseases without subtype reporting (measles, pertussis)
+- Use `total` for diseases without subtype reporting (measles, pertussis, hep a, acute hepatitis B, perinatal hepatitis B, mumps, mpox, varicella, influenza-associated pediatric mortality)
 - Use `unknown` when subtyping was not performed or is otherwise not known (only for disease_subtype aggregations)
 - Use `unspecified` when subtype is known but suppressed
 
@@ -272,6 +270,7 @@ Jurisdictions should provide accompanying metadata using the [Jurisdiction Repor
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.0.0 | 2026-05-18 | Expanded supported diseases and updated documentation/tool guidance for disease-specific value rules |
 | 1.1.0 | 2026-02-09 | Updated standards. Moves to weekly only, clarifies value use-cases, removes `ytd`, clarifies data sub-aggregations |
 | 1.0.0 | 2026-01-06 | Initial draft for pilot phase |
 
