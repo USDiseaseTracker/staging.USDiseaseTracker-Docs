@@ -429,7 +429,7 @@ def update_markdown_from_schema(schema: Dict, markdown: str, schema_path: Path) 
         # Match the table row for the field and update the Required column
         required_val = 'Yes' if is_required else 'No'
         # First, locate the full table row for this field to validate its structure.
-        row_pattern = r'^\\|\\s*' + re.escape(field_name) + r'\\s*\\|.*$'
+        row_pattern = r'^\|\s*' + re.escape(field_name) + r'\s*\|.*$'
         row_match = re.search(row_pattern, updated, flags=re.MULTILINE)
         if not row_match:
             # If the field row does not exist in the table, do nothing.
@@ -445,8 +445,9 @@ def update_markdown_from_schema(schema: Dict, markdown: str, schema_path: Path) 
                 "Update 'replace_field_required' to handle the new layout."
             )
         # Perform the substitution on the Required column, ensuring it succeeds.
-        pattern = r'(\\|\\s*' + re.escape(field_name) + r'\\s*\\| [^|]+ \\| [^|]+ \\| [^|]+ \\| )[^|]+(\\s*\\|)'
-        updated_new, count = re.subn(pattern, r'\\1' + required_val + r'\\2', updated)
+        # [^|]+ greedily consumes any trailing space, so we re-add it before \2.
+        pattern = r'(\|\s*' + re.escape(field_name) + r'\s*\| [^|]+ \| [^|]+ \| [^|]+ \| )[^|]+(\s*\|)'
+        updated_new, count = re.subn(pattern, r'\1' + required_val + r' \2', updated)
         if count == 0:
             raise ValueError(
                 f"Failed to update 'Required' column for field '{field_name}'. "
