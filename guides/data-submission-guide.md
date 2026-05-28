@@ -85,6 +85,7 @@ Disease counts for different breakdowns are collected separately (e.g., age, sub
 
 <br>
 
+#### Data Aggregations:
 
     Measles
     - Cases × week × sub-jurisdiction unit (county, planning area, sub-state region, etc.)
